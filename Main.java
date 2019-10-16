@@ -31,6 +31,7 @@ public  abstract class   Nome
 
 }
 
+//classe que cadastra uma localização possivel para os bem!
 public class Localizacao extends Nome
 {
   //construtor(es)
