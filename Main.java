@@ -31,7 +31,7 @@ public  abstract class   Nome
 
 }
 
-//classe que cadastra uma localização possivel para os bem!
+//classe que cadastra uma localização possivel para os bem's!
 public class Localizacao extends Nome
 {
   //construtor(es)
@@ -77,6 +77,19 @@ public class CategoriadeBem extends Nome
 
 public class Bem extends Nome
 {
+  //campos
+  int codigo;
+  Localizacao loc;
+  Categoria ca;
+  
+  //set's e get's
+  
+  
+  
+  //construtores
+  
+  
+  
 
 }
 
