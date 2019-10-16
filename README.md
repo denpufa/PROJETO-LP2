@@ -7,6 +7,6 @@ Rodolfo Dantas de Oliveira Bezerra
 Andre Habib
 
 # OBJETIVO
-Desinvolver um bot para o aplicativo de mesangens Telegram que contenham as caracteristica da atividade proposta pelo professor Frederico.
+Desenvolver um bot para o aplicativo de mesangens Telegram.Que contenha as caracteristicas da atividade proposta pelo professor Frederico.
 
 
