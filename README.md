@@ -4,7 +4,7 @@ Repositório dedicado ao projeto final da matéria linguagem de programação 2,
 # PARTICIPANTES
 Rodolfo Dantas de Oliveira Bezerra
 
-Andre Habib Fonseca Montenegro
+André Habib Fonseca Montenegro
 
 # OBJETIVO
 Desenvolver um bot para o aplicativo de mensagens Telegram.Que contenha as caracteristicas da atividade proposta pelo professor Frederico.
