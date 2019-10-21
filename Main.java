@@ -163,9 +163,9 @@ public class CategoriadeBem extends Nome
 public class Bem extends Nome
 {
   //campos
-  int codigo;
-  Localizacao loc;
-  Categoria ca;
+  private int codigo;
+  private Localizacao loc;
+  private Categoria ca;
   
   //set's e get's
    public int setCodigo(int c)
@@ -196,9 +196,9 @@ public class Bem extends Nome
 public class Bem extends Nome
 {
   //campos
-  int codigo;
-  Localizacao loc;
-  Categoria ca;
+  private int codigo;
+  private Localizacao loc;
+  private Categoria ca;
   
   //set's e get's
   public void setCodigo(int c)
