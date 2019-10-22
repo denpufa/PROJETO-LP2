@@ -84,15 +84,42 @@ public class Menu implements SistemaNeeds
     String aux;
     aux = Entrada.next();
     b.setNome(aux);
-    System.out.println("digite uma breve descricao para o seu bem: \n")
+    
+    System.out.println("digite uma breve descricao para o seu bem: \n");
     aux = next();
     b.setDescricao(aux);
+    
     System.out.println("digite um código para o seu bem: \n");
     int auxtwo;
     auxtwo = Entrada.nextInt();
     b.setCodigo(auxtwo);
+    
     System.out.println("digite  o nome de uma  categoria para seu bem: ");
-    aux = next();
+    aux = Entrada.next();
+    for(int i = 0;i<catego.size();i++)
+    {
+        if(catego.get(i).getNome() == aux)
+        {
+          b.setCategoria(catego.get(i));
+          break;
+        }
+    }
+    
+    System.out.println("Digite  um nome de uma localizacão para o seu bem: \n");
+    aux = Entrada.next();
+    for(int i = 0;i<locs.size();i++)
+    {
+      if(locs.get(i).getNome() == aux)
+      {
+        b.setLocalizacao(locs.get(i));
+        break;
+      }
+    }
+    
+    bems.add(b);
+    return;
+    
+    
 
 
 }
@@ -219,7 +246,7 @@ public class Bem extends Nome
   {
     return loc;
   }
-  public int setCategoria(int ca)
+  public int setCategoria(Categoria ca)
   {
     this.ca = ca;
 
