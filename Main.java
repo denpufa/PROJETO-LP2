@@ -143,7 +143,7 @@ public class Menu implements SistemaNeeds
    {
 	String aux;
 	System.out.println("Escolha uma localização abaixo para listar o bem's nela contido:\n ");
-	this->listarLocalizacao();
+	this.listarLocalizacao();
 	System.out.println("Digite o nome de uma: ");
 	aux = Entrada.next();
 	for(int i = 0;i<bems.size();i++)
