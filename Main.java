@@ -118,13 +118,98 @@ public class Menu implements SistemaNeeds
     
     bems.add(b);
     return;
-    
-    
+   }
+
+   public void listarLocalizacao()
+   {
+	System.out.println("Localizações abaixo:\n ")
+	for(int i = 0;i<locs.size();i++)
+	{
+		System.out.println(locs.get(i).getNome() + "\n");
+	}
+   }
+	
+	
+   public void listarCategoria()
+   {
+	System.out.println("Categorias de bem abaixo:\n ");
+	for(int i = 0;i<catego.size();i++)
+	{
+		System.out.println(catego.get(i).getNome() + "\n");
+	}
+   }
+	
+   public void listarBemPorLocalizacao()
+   {
+	String aux;
+	System.out.println("Escolha uma localização abaixo para listar o bem's nela contido:\n ");
+	this->listarLocalizacao();
+	System.out.println("Digite o nome de uma: ");
+	aux = Entrada.next();
+	for(int i = 0;i<bems.size();i++)
+	{
+		if(bems.get(i).getLocalizacao() == aux)
+			System.out.println(bems.get(i).getLocalizacao() + "\n");
+        }
+   }
+
+   public void buscarBemPorCodigo()
+   {
+	int aux;
+	System.out.println("Digite um código: ");
+	aux = Entrada.nextInt();	
+	for(int i = 0;i<bems.size();i++)
+        {
+                if(bems.get(i).getCodigo() == aux)
+                        System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
+			return;
+        }
+	System.out.prinln("Bem não encontrado!");
+										
+  }
+
+  public void buscarBemPorNome()
+  {
+	String aux;
+	System.out.println("Digite um nome: ");
+	aux = Entrada.next();    
+ 	for(int i = 0;i<bems.size();i++)
+        {
+                if(bems.get(i).getNome() == aux)
+                        System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
+                        return;
+        }
+        System.out.prinln("Bem não encontrado!");
+
+  }
+
+  public void buscarBemPorDescricao()
+  {
+	String aux;
+	System.out.println("Digite uma descrição: "); 
+       	aux = Entrada.next();
+        for(int i = 0;i<bems.size();i++)
+        {
+                if(bems.get(i).getDescricao() == aux)
+                        System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
+                        return;
+        }
+        System.out.prinln("Bem não encontrado!");
+
+  }
+
+ //para fazer!!
+  public void movimentarBem()
+  {
+  }	 
+  //para fazer!!
+  public void gerarRelatorio()
+  {
+  }
 
 
 }
-
-
+	
 //metodos das funcionalidades do bot!!
 public interface SistemaNeeds
 {
@@ -137,7 +222,7 @@ public interface SistemaNeeds
   void buscarBemPorCodigo();// obs: devera mostrar a loc caso encontrado!!
   void buscarBemPorNome();
   void buscarBemPorDescricao();
-  void MovimentarBem(); // obs:  entre as localizacoes !!
+  void movimentarBem(); // obs:  entre as localizacoes !!
   void gerarRelatorio();
 
 
@@ -187,39 +272,8 @@ public class CategoriadeBem extends Nome
 
 }
 
-public class Bem extends Nome
-{
-  //campos
-  private int codigo;
-  private Localizacao loc;
-  private Categoria ca;
-  
-  //set's e get's
-   public int setCodigo(int c)
-  {
-    codigo = c;
 
-  }
-   public int getCodigo()
-  {
-    return codigo;
-  }
-
-  //construtor(es)
-  CategoriadeBem(String n,String d,int c)
-  {
-    nome = n;
-    descricao = d;
-    codigo = c;
-  }
-  
-  CategoriadeBem(){}
-
-
-
-
-}
-
+//classe para representar cada bem material!
 public class Bem extends Nome
 {
   //campos
@@ -259,7 +313,7 @@ public class Bem extends Nome
   
   
   //construtores
-  
+  Bem() {}
   
   
 
