@@ -3,47 +3,23 @@ package projetinho.telegram.com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu implements SistemaNeeds
+public class Menu implements SystemNeeds
 {
-    //objeto para leitura de dados
+    /**
+     * @brief Patrimony class attributes.
+     */
     Scanner Entrada = new Scanner(System.in);
+    private ArrayList<Location> locs;
+    private ArrayList<PatrimonyCategory> category;
+    private ArrayList<Patrimony> patrimonies;
 
-    //campos
-    private ArrayList<Localizacao> locs;
-    private ArrayList<CategoriadeBem> catego;
-    private ArrayList<Bem> bems;
-
-    //méétodos para as obrigações do sistema
-    public void cadastrarLocalizacao()
-    {
-        Localizacao obj = new Localizacao();
-        Systeam.out.prinln("digite o nome da localizacao: \n");
-        String aux = Entrada.next();
-        obj.setNome(aux);
-        Systeam.out.println("digite uma breve descrição para a localização: \n");
-        aux = Entrada.next();
-        obj.setDescricao(aux);
-        locs.add(obj);
-        return;
-
-    }
+    /**
+     * @brief Mandatory methods of SystemNeeds
+     */
 
     public void cadastrarCategoria()
     {
-        CategoriadeBem ca = new CategoriadeBem();
-        Systeam.out.println("digite o nome da Categoria: \n");
-        String aux;
-        aux = Entrada.next();
-        ca.setNome(aux);
-        System.out.println("Digite uma breve descricao da categoria: \n");
-        aux = Entrada.next();
-        ca.setDescricao(aux);
-        System.out.println("digite um codigo para a categoria: \n");
-        int auxtwo;
-        auxtwo = Entrada.nextInt();
-        ca.setCodigo(auxtwo);
-        catego.add(ca);
-        return;
+
 
     }
 
@@ -172,6 +148,7 @@ public class Menu implements SistemaNeeds
     //para fazer!!
     public void movimentarBem()
     {
+
     }
     //para fazer!!
     public void gerarRelatorio()
@@ -179,6 +156,85 @@ public class Menu implements SistemaNeeds
     }
 
 
+    @Override
+    public void registerLocation() {
+        Location obj = new Location();
+        System.out.prinln("digite o nome da localizacao: \n");
+        String aux = Entrada.next();
+        obj.setName(aux);
+        System.out.println("digite uma breve descrição para a localização: \n");
+        aux = Entrada.next();
+        obj.setDescription(aux);
+        locs.add(obj);
+        return;
+    }
+
+    @Override
+    public void registerCategory() {
+
+        int code;
+        String name;
+        String description;
+        Systeam.out.println("digite o nome da Categoria: \n");
+        name = Entrada.next();
+
+        System.out.println("Digite uma breve descricao da categoria: \n");
+        description = Entrada.next();
+        ca.setDescricao(aux);
+        System.out.println("digite um codigo para a categoria: \n");
+        int auxtwo;
+
+        PatrimonyCategory ca = new PatrimonyCategory();
+        auxtwo = Entrada.nextInt();
+        ca.setCodigo(auxtwo);
+        catego.add(ca);
+        return;
+    }
+
+    @Override
+    public void registerPatrimony() {
+
+    }
+
+    @Override
+    public void listLocation() {
+
+    }
+
+    @Override
+    public void listCategory() {
+
+    }
+
+    @Override
+    public void listPatrimonyByLocation() {
+
+    }
+
+    @Override
+    public void searchPatrimonyByCode() {
+
+    }
+
+    @Override
+    public void searchPatrimonyByName() {
+
+    }
+
+    @Override
+    public void searchPatrimonyByDescription() {
+
+    }
+
+    @Override
+    public void movePatrimony() {
+
+    }
+
+    @Override
+    public void generateReport() {
+
+    }
 }
 
 

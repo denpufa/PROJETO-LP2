@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c847b5f-ff32-46e9-8138-d03238ad3a91" name="Default Changelist" comment="" />
+    <list default="true" id="6c847b5f-ff32-46e9-8138-d03238ad3a91" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Name.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/PatrimonyCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/SystemNeeds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Bem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Patrimony.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/CategoriaBem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Localizacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Nome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/SistemaNeeds.java" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +37,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -60,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572303885518</updated>
       <workItem from="1572303889501" duration="416000" />
+      <workItem from="1572373539175" duration="3628000" />
     </task>
     <servers />
   </component>
@@ -71,10 +86,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/projetinho/telegram/com/company/Name.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
