@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c847b5f-ff32-46e9-8138-d03238ad3a91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Name.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/PatrimonyCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/SystemNeeds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Bem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Patrimony.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/CategoriaBem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Localizacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Nome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/SistemaNeeds.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Patrimony.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Patrimony.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +65,7 @@
       <updated>1572303885518</updated>
       <workItem from="1572303889501" duration="416000" />
       <workItem from="1572373539175" duration="3628000" />
+      <workItem from="1572381127278" duration="2496000" />
     </task>
     <servers />
   </component>

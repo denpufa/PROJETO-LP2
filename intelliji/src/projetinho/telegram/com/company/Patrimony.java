@@ -10,14 +10,20 @@ public class Patrimony extends Name{
      */
     private int code;
     private Location loc;
-    //private Category ca;
+    private PatrimonyCategory ca;
 
     /**
      * @brief  Standardized Constructor.
      * @param  String, String.
      */
 
-    Patrimony(int code, Location loc){ this.code = code; this.loc = loc;}
+    Patrimony(int code,  String name, String description, Location loc, PatrimonyCategory ca){
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.loc = loc;
+        this.ca = ca;
+    }
 
     /**
      * @brief Setters.
@@ -26,7 +32,7 @@ public class Patrimony extends Name{
 
      public void setLocation(Location loc){ this.loc = loc; }
 
-    //public int setCategory(Category ca){ this.ca = ca; }
+    public int setCategory(PatrimonyCategory ca){ this.ca = ca; }
 
     /**
      * @brief Setters.
@@ -35,6 +41,6 @@ public class Patrimony extends Name{
 
      public Location getLocation(){ return this.loc; }
 
-     //public Categoria getCategoria(){ return this.ca; }
+     public PatrimonyCategory getCategory(){ return this.ca; }
 }
 

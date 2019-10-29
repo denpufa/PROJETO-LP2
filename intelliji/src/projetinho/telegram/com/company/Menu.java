@@ -17,54 +17,12 @@ public class Menu implements SystemNeeds
      * @brief Mandatory methods of SystemNeeds
      */
 
-    public void cadastrarCategoria()
-    {
 
-
-    }
 
     //Falta terminar!!
     public void cadastrarbem()
     {
-        Bem b = new Bem();
-        System.out.println("digite um nome para o seu bem: \n");
-        String aux;
-        aux = Entrada.next();
-        b.setNome(aux);
 
-        System.out.println("digite uma breve descricao para o seu bem: \n");
-        aux = next();
-        b.setDescricao(aux);
-
-        System.out.println("digite um código para o seu bem: \n");
-        int auxtwo;
-        auxtwo = Entrada.nextInt();
-        b.setCodigo(auxtwo);
-
-        System.out.println("digite  o nome de uma  categoria para seu bem: ");
-        aux = Entrada.next();
-        for(int i = 0;i<catego.size();i++)
-        {
-            if(catego.get(i).getNome() == aux)
-            {
-                b.setCategoria(catego.get(i));
-                break;
-            }
-        }
-
-        System.out.println("Digite  um nome de uma localizacão para o seu bem: \n");
-        aux = Entrada.next();
-        for(int i = 0;i<locs.size();i++)
-        {
-            if(locs.get(i).getNome() == aux)
-            {
-                b.setLocalizacao(locs.get(i));
-                break;
-            }
-        }
-
-        bems.add(b);
-        return;
     }
 
     public void listarLocalizacao()
@@ -175,25 +133,71 @@ public class Menu implements SystemNeeds
         int code;
         String name;
         String description;
+
         Systeam.out.println("digite o nome da Categoria: \n");
         name = Entrada.next();
 
         System.out.println("Digite uma breve descricao da categoria: \n");
         description = Entrada.next();
-        ca.setDescricao(aux);
-        System.out.println("digite um codigo para a categoria: \n");
-        int auxtwo;
 
-        PatrimonyCategory ca = new PatrimonyCategory();
-        auxtwo = Entrada.nextInt();
-        ca.setCodigo(auxtwo);
-        catego.add(ca);
+        System.out.println("digite um codigo para a categoria: \n");
+        code = Entrada.nextInt();
+
+        PatrimonyCategory ca = new PatrimonyCategory(code, name, description);
+
+        category.add(ca);
+
         return;
     }
 
     @Override
     public void registerPatrimony() {
 
+        int code;
+        String name;
+        String description;
+        String category;
+        String location;
+
+        System.out.println("digite um nome para o seu bem: \n");
+        name = Entrada.next();
+
+        System.out.println("digite uma breve descricao para o seu bem: \n");
+        description = Entrada.next();
+
+
+        System.out.println("digite um código para o seu bem: \n");
+        code = Entrada.nextInt();
+
+        System.out.println("digite  o nome de uma  categoria para seu bem: ");
+        category = Entrada.next();
+
+
+
+//        for(int i = 0;i< category.size();i++)
+//        {
+//            if(category.get(i).getNome() == category)
+//            {
+//                b.setCategoria(catego.get(i));
+//                break;
+//            }
+//        }
+
+        System.out.println("Digite  um nome de uma localizacão para o seu bem: \n");
+         location = Entrada.next();
+
+//        for(int i = 0;i<locs.size();i++)
+//        {
+//            if(locs.get(i).getNome() == aux)
+//            {
+//                b.setLocalizacao(locs.get(i));
+//                break;
+//            }
+//        }
+
+        Patrimony b = new Patrimony(code, );
+        patrimonies.add(b);
+        return;
     }
 
     @Override
