@@ -1,14 +1,18 @@
 package projetinho.telegram.com.company;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Menu implements SystemNeeds
 {
     /**
      * @brief Patrimony class attributes.
      */
-    Scanner Entrada = new Scanner(System.in);
     private ArrayList<Location> locs;
     private ArrayList<PatrimonyCategory> category;
     private ArrayList<Patrimony> patrimonies;
@@ -18,106 +22,62 @@ public class Menu implements SystemNeeds
      */
 
 
-
-    //Falta terminar!!
-    public void cadastrarbem()
+//Metodos relacionados ao bot!!
+    public HttpResponse sendMessage(Integer chatId, String text) throws UnirestException
     {
-
+        return Unirest.post("https://api.telegram.org/" + "bot" + "1001978429:AAHB97aihuye-wDwX09_yW_77jJ6kMPtmfY" + "/sendMessage")
+                .field("chat_id", chatId)
+                .field("text", text)
+                .asJson();
     }
-
-    public void listarLocalizacao()
+    public HttpResponse getUpdates(Integer offset) throws UnirestException
     {
-        System.out.println("Localizações abaixo:\n ")
-        for(int i = 0;i<locs.size();i++)
-        {
-            System.out.println(locs.get(i).getNome() + "\n");
-        }
+        return Unirest.post( "https://api.telegram.org/" + "bot" + "1001978429:AAHB97aihuye-wDwX09_yW_77jJ6kMPtmfY" + "/getUpdates")
+                .field("offset", offset)
+                .asJson();
     }
+    public void run() throws UnirestException {
+        int last_update_id = 0; // controle das mensagens processadas
+        HttpResponse response;
+        while (true) {
+            response = getUpdates(last_update_id++);
+            if (response.getStatus() == 200) {
+                JSONArray responses = response.getBody().getObject().getJSONArray("result");
+                if (responses.isNull(0)) {
+                    continue;
+                } else {
+                    last_update_id = responses
+                            .getJSONObject(responses.length() - 1)
+                            .getInt("update_id") + 1;
+                }
+                JSONObject message = responses.getJSONObject(i)
+                        .getJSONObject("message");
+                int chat_id = message
+                        .getJSONObject("chat")
+                        .getInt("id");
+                sendMessage(chat_id, "OLÁ ESCOLHA UMA DAS OPÇÕES ABAIXO: ");
+                sendMessage()
 
+                for (int i = 0; i < responses.length(); i++) {
+                    JSONObject message = responses
+                            .getJSONObject(i)
+                            .getJSONObject("message");
+                    int chat_id = message
+                            .getJSONObject("chat")
+                            .getInt("id");
+                    String usuario = message
+                            .getJSONObject("chat")
+                            .getString("username");
+                    String texto = message
+                            .getString("text");
 
-    public void listarCategoria()
-    {
-        System.out.println("Categorias de bem abaixo:\n ");
-        for(int i = 0;i<catego.size();i++)
-        {
-            System.out.println(catego.get(i).getNome() + "\n");
-        }
-    }
-
-    public void listarBemPorLocalizacao()
-    {
-        String aux;
-        System.out.println("Escolha uma localização abaixo para listar o bem's nela contido:\n ");
-        this.listarLocalizacao();
-        System.out.println("Digite o nome de uma: ");
-        aux = Entrada.next();
-        for(int i = 0;i<bems.size();i++)
-        {
-            if(bems.get(i).getLocalizacao() == aux)
-                System.out.println(bems.get(i).getLocalizacao() + "\n");
-        }
-    }
-
-    public void buscarBemPorCodigo()
-    {
-        int aux;
-        System.out.println("Digite um código: ");
-        aux = Entrada.nextInt();
-        for(int i = 0;i<bems.size();i++)
-        {
-            if(bems.get(i).getCodigo() == aux)
-                System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
-            return;
-        }
-        System.out.prinln("Bem não encontrado!");
-
-    }
-
-    public void buscarBemPorNome()
-    {
-        String aux;
-        System.out.println("Digite um nome: ");
-        aux = Entrada.next();
-        for(int i = 0;i<bems.size();i++)
-        {
-            if(bems.get(i).getNome() == aux)
-                System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
-            return;
-        }
-        System.out.prinln("Bem não encontrado!");
-
-    }
-
-    public void buscarBemPorDescricao()
-    {
-        String aux;
-        System.out.println("Digite uma descrição: ");
-        aux = Entrada.next();
-        for(int i = 0;i<bems.size();i++)
-        {
-            if(bems.get(i).getDescricao() == aux)
-                System.out.println("Bem encontrado! " +"Sua localização: " +  bems.get(i).getLocalizacao() + "\n");
-            return;
-        }
-        System.out.prinln("Bem não encontrado!");
-
-    }
-
-    //para fazer!!
-    public void movimentarBem()
-    {
-
-    }
-    //para fazer!!
-    public void gerarRelatorio()
-    {
-    }
+                    sendMessage(chat_id, textoInvertido);
 
 
     @Override
     public void registerLocation() {
         Location obj = new Location();
-        System.out.prinln("digite o nome da localizacao: \n");
+        System.out.println("digite o nome da localizacao: \n");
         String aux = Entrada.next();
         obj.setName(aux);
         System.out.println("digite uma breve descrição para a localização: \n");
@@ -134,7 +94,7 @@ public class Menu implements SystemNeeds
         String name;
         String description;
 
-        Systeam.out.println("digite o nome da Categoria: \n");
+        System.out.println("digite o nome da Categoria: \n");
         name = Entrada.next();
 
         System.out.println("Digite uma breve descricao da categoria: \n");
@@ -201,8 +161,14 @@ public class Menu implements SystemNeeds
     }
 
     @Override
-    public void listLocation() {
-
+    public void listLocation()
+    {
+        for(int i = 0;i<locs.size();i++)
+        {
+            System.out.println("-----localizações listadas abaixo-----\n");
+            System.out.println(i + locs.get(i).getName() + "\n");
+        }
+        System.out.println("P");
     }
 
     @Override
