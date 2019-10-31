@@ -22,27 +22,28 @@ public class Menu implements SystemNeeds
      */
 
 
-//Metodos relacionados ao bot!!
-    public HttpResponse sendMessage(Integer chatId, String text) throws UnirestException
+    //Metodos relacionados ao bot!!
+    public static HttpResponse sendMessage(Integer chatId, String text) throws UnirestException
     {
         return Unirest.post("https://api.telegram.org/" + "bot" + "1001978429:AAHB97aihuye-wDwX09_yW_77jJ6kMPtmfY" + "/sendMessage")
                 .field("chat_id", chatId)
                 .field("text", text)
                 .asJson();
     }
-    public HttpResponse getUpdates(Integer offset) throws UnirestException
+    public static HttpResponse getUpdates(Integer offset) throws UnirestException
     {
         return Unirest.post( "https://api.telegram.org/" + "bot" + "1001978429:AAHB97aihuye-wDwX09_yW_77jJ6kMPtmfY" + "/getUpdates")
                 .field("offset", offset)
                 .asJson();
     }
-    public void run() throws UnirestException {
+    public static void  run() throws UnirestException
+    {
         int last_update_id = 0; // controle das mensagens processadas
         HttpResponse response;
         while (true) {
             response = getUpdates(last_update_id++);
             if (response.getStatus() == 200) {
-                JSONArray responses = response.getBody().getObject().getJSONArray("result");
+                JSONArray responses = response.getBody().get();
                 if (responses.isNull(0)) {
                     continue;
                 } else {
@@ -50,130 +51,54 @@ public class Menu implements SystemNeeds
                             .getJSONObject(responses.length() - 1)
                             .getInt("update_id") + 1;
                 }
-                JSONObject message = responses.getJSONObject(i)
-                        .getJSONObject("message");
-                int chat_id = message
-                        .getJSONObject("chat")
-                        .getInt("id");
-                sendMessage(chat_id, "OLÁ ESCOLHA UMA DAS OPÇÕES ABAIXO: ");
-                sendMessage()
+                JSONObject message = responses.getJSONObject(0).getJSONObject("message");
+                int chat_id = message.getJSONObject("chat").getInt("id");
+                sendMessage(chat_id, "OLÁ ESCOLHA UMA DAS OPÇÕES ABAIXO: \n");
+                sendMessage(chat_id, "DIGITE /1 PARA CADASTRAR LOCALIZAÇÃO \n");
 
-                for (int i = 0; i < responses.length(); i++) {
-                    JSONObject message = responses
-                            .getJSONObject(i)
-                            .getJSONObject("message");
-                    int chat_id = message
-                            .getJSONObject("chat")
-                            .getInt("id");
-                    String usuario = message
-                            .getJSONObject("chat")
-                            .getString("username");
-                    String texto = message
-                            .getString("text");
+                sendMessage(chat_id, "DIGITE /2 PARA CADASTRAR CATEGORIA DE BEM \n");
+                sendMessage(chat_id, "DIGITE /3 PARA BEM\n");
+                sendMessage(chat_id, "DIGITE /4 PARA LISTAR LOCALIZAÇÃO \n");
+                sendMessage(chat_id, "DIGITE /5 PARA LISTAR CATEGORIAS\n");
+                sendMessage(chat_id, "DIGITE /6 PARA LISTAR BEM POR LOCALIZAÇÃO ESPECIFÍCA\n");
+                sendMessage(chat_id, "DIGITE /7 PARA BUSCAR BEM POR CÓDIGO\n");
+                sendMessage(chat_id, "digite /8 PARA BUSCAR BEM POR DESCRIÇÃO\n");
+                sendMessage(chat_id, "DIGITE /9 PARA MOVER BEM DE UMA LOCALIZAÇÃO PARA OUTRA\n");
+                sendMessage(chat_id, "DIGITE /10 PARA GERAR RELATORIO \n");
+                sendMessage(chat_id, "DIGITE /11 PARA CARREGAR ARQUIVO PARA O BANCO DE DADOS\n");
 
-                    sendMessage(chat_id, textoInvertido);
+
+            }
+        }
+    }
 
 
     @Override
     public void registerLocation() {
-        Location obj = new Location();
-        System.out.println("digite o nome da localizacao: \n");
-        String aux = Entrada.next();
-        obj.setName(aux);
-        System.out.println("digite uma breve descrição para a localização: \n");
-        aux = Entrada.next();
-        obj.setDescription(aux);
-        locs.add(obj);
-        return;
+
     }
 
     @Override
     public void registerCategory() {
 
-        int code;
-        String name;
-        String description;
 
-        System.out.println("digite o nome da Categoria: \n");
-        name = Entrada.next();
-
-        System.out.println("Digite uma breve descricao da categoria: \n");
-        description = Entrada.next();
-
-        System.out.println("digite um codigo para a categoria: \n");
-        code = Entrada.nextInt();
-
-        PatrimonyCategory ca = new PatrimonyCategory(code, name, description);
-
-        category.add(ca);
-
-        return;
     }
 
     @Override
     public void registerPatrimony() {
 
-        int code;
-        String name;
-        String description;
-        String category;
-        String location;
-
-        System.out.println("digite um nome para o seu bem: \n");
-        name = Entrada.next();
-
-        System.out.println("digite uma breve descricao para o seu bem: \n");
-        description = Entrada.next();
-
-
-        System.out.println("digite um código para o seu bem: \n");
-        code = Entrada.nextInt();
-
-        System.out.println("digite  o nome de uma  categoria para seu bem: ");
-        category = Entrada.next();
-
-
-
-//        for(int i = 0;i< category.size();i++)
-//        {
-//            if(category.get(i).getNome() == category)
-//            {
-//                b.setCategoria(catego.get(i));
-//                break;
-//            }
-//        }
-
-        System.out.println("Digite  um nome de uma localizacão para o seu bem: \n");
-         location = Entrada.next();
-
-//        for(int i = 0;i<locs.size();i++)
-//        {
-//            if(locs.get(i).getNome() == aux)
-//            {
-//                b.setLocalizacao(locs.get(i));
-//                break;
-//            }
-//        }
-
-        Patrimony b = new Patrimony(code, );
-        patrimonies.add(b);
-        return;
     }
 
     @Override
     public void listLocation()
     {
-        for(int i = 0;i<locs.size();i++)
-        {
-            System.out.println("-----localizações listadas abaixo-----\n");
-            System.out.println(i + locs.get(i).getName() + "\n");
-        }
-        System.out.println("P");
+
     }
 
     @Override
-    public void listCategory() {
-
+    public void listCategory()
+        {
+);
     }
 
     @Override

@@ -11,14 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        TelegramBot tb = new TelegramBot("1001978429:AAHB97aihuye-wDwX09_yW_77jJ6kMPtmfY");
+        Menu t = new Menu();
         try {
-            tb.run();
+            Menu.run();
         } catch (UnirestException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
-}
+
 
 

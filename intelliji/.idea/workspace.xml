@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6c847b5f-ff32-46e9-8138-d03238ad3a91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/projetinho/telegram/com/company/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/projetinho/telegram/com/company/TelegramBot.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +74,7 @@
       <workItem from="1572381127278" duration="2496000" />
       <workItem from="1572384921959" duration="31000" />
       <workItem from="1572540042680" duration="2533000" />
+      <workItem from="1572545732250" duration="2822000" />
     </task>
     <servers />
   </component>
