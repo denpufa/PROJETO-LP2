@@ -8,7 +8,13 @@ public class Bot extends TelegramLongPollingBot
         {
             //System.out.println(update.getMessage().getText());
             //System.out.println(update.getMessage().getFrom().getFirstName());
+            String command=update.getMessage().getText();
             
+            if(command.equals("/menu")
+            {
+               Menu m = new Menu();
+               Menu.run;
+            }
 
         }
 
