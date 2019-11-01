@@ -9,4 +9,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lib" level="project" />
   </component>
+  <dependencies>
+    <dependency>
+        <groupId>org.telegram</groupId>
+        <artifactId>telegrambots</artifactId>
+        <version>4.4.0</version>
+    </dependency>
+  </dependencies>
 </module>
