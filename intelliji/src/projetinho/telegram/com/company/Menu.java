@@ -120,6 +120,7 @@ public class Menu implements SystemNeeds
     @Override
     public void registerLocation(SendMessage m,Update u)
     {
+          Localizacao l = new Localizacao();
           bool aux = true;
           m.setChatId(u.getMessage.getChatId());
           while(aux)
@@ -130,18 +131,42 @@ public class Menu implements SystemNeeds
               catch(TelegramApiException e)
                  { e.printStackTrace; }
                try
-                  {String n = u.getMessage().getText();
-                   Check.checkName(locs,n);
-                   aux = false;
+                  {
+                      String n = u.getMessage().getText();
+                       Check.checkName(locs,n);
+                       aux = false;
+                       l.setName(n);
+                       
+                       
                   }
                catch(Exception e)
-                  { m.setText("esse nome já foi cadastrado tente outro por favor);
-                    try
-                       {execute(m);}
-                    catch(TelegramApiException e)
-                        { e.printStackTrace; } 
+                  { 
+                      m.setText("esse nome já foi cadastrado tente outro por favor);
+                        try
+                           {execute(m);}
+                        catch(TelegramApiException e)
+                            { e.printStackTrace; } 
                    }
            }
+           aux = true;
+           while(aux)
+           {
+                m.setText("digite uma descrição para a localização a ser criada:");
+                try
+                    {execute(m);}
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                String d = u.getMessage().getText();
+                l.setDescription(d);
+                aux = false;
+                locs.add(l);
+                m.setText("Localização ,criada com sucesso");
+                try
+                    {execute(m);}
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                
+            }
            
      }
 
