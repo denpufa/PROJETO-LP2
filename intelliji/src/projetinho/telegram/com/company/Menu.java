@@ -141,7 +141,7 @@ public class Menu implements SystemNeeds
                   }
                catch(Exception e)
                   { 
-                      m.setText("esse nome já foi cadastrado tente outro por favor);
+                      m.setText("esse nome já foi cadastrado tente outro por favor");
                         try
                            {execute(m);}
                         catch(TelegramApiException e)
