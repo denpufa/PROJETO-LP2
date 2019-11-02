@@ -13,8 +13,9 @@ public class Bot extends TelegramLongPollingBot
             if(command.equals("/menu"))
             {
                Menu m = new Menu();
-               Menu.run;
+               m.run;
             }
+            
 
         }
 
