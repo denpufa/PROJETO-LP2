@@ -171,59 +171,66 @@ public class Menu implements SystemNeeds
      }
 
     @Override
-    public void registerCategory() {
+    public void registerCategory(SendMessage m,Update u) {
 
 
     }
 
     @Override
-    public void registerPatrimony() {
-
-    }
-
-    @Override
-    public void listLocation()
+    public void registerPatrimony(SendMessage m,Update u) 
     {
 
     }
 
     @Override
-    public void listCategory()
+    public void listLocation(SendMessage m,Update u)
+    {
+
+    }
+
+    @Override
+    public void listCategory(SendMessage m,Update u)
         {
 );
     }
 
     @Override
-    public void listPatrimonyByLocation() {
+    public void listPatrimonyByLocation(SendMessage m,Update u) 
+    {
 
     }
     @override
-    public void listPatrimonyByCategory()
+    public void listPatrimonyByCategory(SendMessage m,Update u)
     {
     }
 
     @Override
-    public void searchPatrimonyByCode() {
+    public void searchPatrimonyByCode(SendMessage m,Update u) 
+    {
 
     }
 
     @Override
-    public void searchPatrimonyByName() {
+    public void searchPatrimonyByName(SendMessage m,Update u) 
+    {
 
     }
 
     @Override
-    public void searchPatrimonyByDescription() {
+    public void searchPatrimonyByDescription(SendMessage m,Update u) 
+    {
 
     }
 
     @Override
-    public void movePatrimony() {
+    public void movePatrimony(SendMessage m,Update u) 
+    {
 
     }
 
     @Override
-    public void generateReport() {
+    public void generateReport(SendMessage m,Update u) 
+    {
 
     }
 }
