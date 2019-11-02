@@ -5,7 +5,7 @@ public class Check throws ExceptionHave
     {
         for(int i=0;i<a.size();i++)
         {
-            if(a.get(i).getName() == s)
+            if(s.equals(a.get(i).getName()))
             {
               throw  new ExceptionHave();
               break;
