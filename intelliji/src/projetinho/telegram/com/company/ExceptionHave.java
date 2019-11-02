@@ -1,3 +1,4 @@
+import java.Lang.Exception;
 package projetinho.telegram.com.company;
 public class ExceptionHave extends Exception
 {
