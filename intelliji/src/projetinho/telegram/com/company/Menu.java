@@ -120,23 +120,29 @@ public class Menu implements SystemNeeds
     @Override
     public void registerLocation(SendMessage m,Update u)
     {
-         m.setChatId(u.getMessage.getChatId());
-         m.setText("digite um nome para a localização a ser criada:");
-          try
-             {execute(m);}
-          catch(TelegramApiException e)
-             { e.printStackTrace; }
-           try
-              {String n = u.getMessage().getText();}
-           catch(Exception e)
-              {
-              
-           
-     
-        
-            
-        
-    }
+         bool aux = true;
+          m.setChatId(u.getMessage.getChatId());
+        while(aux)
+        {
+              m.setText("digite um nome para a localização a ser criada:");
+              try
+                 {execute(m);}
+              catch(TelegramApiException e)
+                 { e.printStackTrace; }
+               try
+                  {String n = u.getMessage().getText();
+                   Check.checkName(locs,n);
+                   aux = false;
+                  }
+               catch(Exception e)
+                  { m.setText("esse nome já foi cadastrado tente outro por favor);
+                    try
+                        {execute(m);}
+                    catch(TelegramApiException e)
+                        { e.printStackTrace; } 
+                   }
+           }
+       }
 
     @Override
     public void registerCategory() {
