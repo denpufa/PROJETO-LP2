@@ -8,6 +8,7 @@ public interface SystemNeeds {
     void registerPatrimony();
     void listLocation();
     void listCategory();
+    void listPatrimonyByCategory();
     void listPatrimonyByLocation();
     void searchPatrimonyByCode();// obs: devera mostrar a loc caso encontrado!!
     void searchPatrimonyByName();
