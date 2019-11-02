@@ -24,11 +24,12 @@ public class Menu implements SystemNeeds
     {
         
         bool permanecer = true;
+         //inicializando objetos da api do telegram.
+         Update u = new Update();
+         SendMessage m = new SendMessage();
         while(permanecer)
         {
-            //inicializando objetos da api do telegram.
-            Update u = new Update();
-            SendMessage m = new SendMessage();
+            
 
             m.setText("seja bem vindo ao gerenciador escolha uma opção   pelo número,tenha um bom dia "  +
                             "1-registrar localização" + 
@@ -171,8 +172,32 @@ public class Menu implements SystemNeeds
      }
 
     @Override
-    public void registerCategory(SendMessage m,Update u) {
-
+    public void registerCategory(SendMessage m,Update u) 
+    {
+            Category c = new Category();
+            bool aux = true;
+             m.setChatId(u.getMessage().getChatId());
+             while(aux)
+             {
+                m.setText("digite um código  para a sua categoria de bem:");
+                try
+                   {execute(m);}
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                String r = u.getMessage().getText();
+                try 
+                { int c = Integer.parseInt(r);}
+                catch (NumberFormatException e)
+                {
+                    m.setText("código com formato invalído,digite novamente por favor")
+                }
+                
+                 
+                
+               
+              
+                
+            
 
     }
 
