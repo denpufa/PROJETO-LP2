@@ -1,4 +1,5 @@
- import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+package projetinho.telegram.com.company; 
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 public class Bot extends TelegramLongPollingBot
 
