@@ -28,9 +28,9 @@ public class Menu implements SystemNeeds
         {
             //inicializando objetos da api do telegram.
             Update u = new Update();
-            SendMessage message = new SendMessage();
+            SendMessage m = new SendMessage();
 
-            message.setText("seja bem vindo ao gerenciador escolha uma opção   pelo número,tenha um bom dia "  +
+            m.setText("seja bem vindo ao gerenciador escolha uma opção   pelo número,tenha um bom dia "  +
                             "1-registrar localização" + 
                             "2-registrar categoria de bem"  +
                             "3-registrar bem (patrimônio)" +
@@ -44,9 +44,9 @@ public class Menu implements SystemNeeds
                             "11-Mover patrimonio entre as localizações" +
                             "12-Gerar relátorio" +
                             "0-sair do menu");
-            message.setChatId(u.getMessage.getChatId());
+            m.setChatId(u.getMessage.getChatId());
             try
-                {execute(message);}
+                {execute(m);}
             catch(TelegramApiException e)
                 { e.printStackTrace; }
 
@@ -58,7 +58,7 @@ public class Menu implements SystemNeeds
                           permanecer = false;
                           break;
                  case "1": 
-                          this.registerLocation();
+                          this.registerLocation(m,u);
                           break;
                  case "2":
                          this.registerCategory();
@@ -94,12 +94,14 @@ public class Menu implements SystemNeeds
                          this.generateReport();
                          break;
                  default:
-                        message.setText("Voçê não digitou uma opção valída,tente novamente");
+                        m.setText("Voçê não digitou uma opção valída,tente novamente");
+                        m.setChatId(u.getMessage.getChatId());
                         try
-                           {execute(message);}
+                           {execute(m);}
                         catch(TelegramApiException e)
                             { e.printStackTrace; }
                         break;
+                        
                }
            }
       }
@@ -116,8 +118,22 @@ public class Menu implements SystemNeeds
 
 
     @Override
-    public void registerLocation()
+    public void registerLocation(SendMessage m,Update u)
     {
+         m.setChatId(u.getMessage.getChatId());
+         m.setText("digite um nome para a localização a ser criada:");
+          try
+             {execute(m);}
+          catch(TelegramApiException e)
+             { e.printStackTrace; }
+           try
+              {String n = u.getMessage().getText();}
+           catch(Exception e)
+              {
+              
+           
+     
+        
             
         
     }
