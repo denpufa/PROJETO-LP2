@@ -13,12 +13,6 @@ public class Menu implements SystemNeeds
     private ArrayList<PatrimonyCategory> category;
     private ArrayList<Patrimony> patrimonies;
 
-    /**
-     * @brief Mandatory methods of SystemNeeds
-     */
-
-
-    
    
     public  void  run() 
     {
@@ -108,7 +102,9 @@ public class Menu implements SystemNeeds
       }
          
                  
-                   
+        /**
+     * @brief Mandatory methods of SystemNeeds
+     */             
         
         
             
@@ -186,21 +182,73 @@ public class Menu implements SystemNeeds
                     { e.printStackTrace; }
                 String r = u.getMessage().getText();
                 try 
-                { int c = Integer.parseInt(r);}
+                { int co = Integer.parseInt(r);}
                 catch (NumberFormatException e)
                 {
-                    m.setText("código com formato invalído,digite novamente por favor")
+                    m.setText("código com formato invalído!");
+                    continue;
                 }
-                
-                 
-                
-               
-              
-                
-            
-
-    }
-
+                try
+                    {
+                    Check.checkCode(category,co);
+                    aux = false;
+                    c.setCode(co);
+                    }
+                catch(Exception e)
+                    {
+                        m.setText("código ja existe!");
+                        try
+                            {execute(m);}
+                        catch(TelegramApiException e)
+                            {e.printStackTrace;}
+                     }
+             }
+             aux = true;
+             while(aux)
+             {
+                m.setText("digite um nome para sua categoria: ");
+                try
+                   {
+                   execute(m);
+                   aux = false;
+                   }
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                 String r = u.getMessage().getText();
+                 c.setName(r);
+               }
+               aux = true;
+               while(aux)
+               {
+                 m.setText("digite uma descrição para o sua categoria de bem: ");
+                 try
+                   {
+                   execute(m);
+                   aux = false;
+                   }
+                catch(TelegramApiException e)
+                   { e.printStackTrace; }
+                 String r = u.getMessage().getText();
+                 c.setDescription(r);
+                }
+                try
+                {
+                    category.add(c);
+                    m.setText("categoria adiconada com sucesso");
+                    try
+                       {execute(m);}
+                    catch(TelegramApiException e)
+                        { e.printStackTrace; }
+                    
+                }
+                catch(Exception e)
+                {
+                    m.setText("ops aconteceu um erro imprevisto,desculpe!");
+                    aux = false;
+                }
+              }
+ }
+    
     @Override
     public void registerPatrimony(SendMessage m,Update u) 
     {
@@ -216,7 +264,7 @@ public class Menu implements SystemNeeds
     @Override
     public void listCategory(SendMessage m,Update u)
         {
-);
+
     }
 
     @Override
