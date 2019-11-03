@@ -263,6 +263,92 @@ public class Menu implements SystemNeeds
     @Override
     public void registerPatrimony(SendMessage m,Update u) 
     {
+            Patrimony p = new Patrimony();
+            bool aux = true;
+             m.setChatId(u.getMessage().getChatId());
+             while(aux)
+             {
+                m.setText("digite um código  para o seu de bem:");
+                try
+                   {execute(m);}
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                String r = u.getMessage().getText();
+                try 
+                { int co = Integer.parseInt(r);}
+                catch (NumberFormatException e)
+                {
+                    m.setText("código com formato invalído!");
+                    continue;
+                }
+                try
+                    {
+                    Check.checkCode(patrimonies,co);
+                    aux = false;
+                    p.setCode(co);
+                    }
+                catch(Exception e)
+                    {
+                        m.setText("código ja existe!");
+                        try
+                            {execute(m);}
+                        catch(TelegramApiException e)
+                            {e.printStackTrace;}
+                     }
+             }
+             aux = true;
+             while(aux)
+             {
+                m.setText("digite um nome para seu bem: ");
+                try
+                   {
+                   execute(m);
+                   aux = false;
+                   }
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                 String r = u.getMessage().getText();
+                 c.setName(r);
+               }
+               aux = true;
+               while(aux)
+               {
+                 m.setText("digite uma descrição para o seu  bem: ");
+                 try
+                   {
+                   execute(m);
+                   aux = false;
+                   }
+                catch(TelegramApiException e)
+                   { e.printStackTrace; }
+                 String r = u.getMessage().getText();
+                 c.setDescription(r);
+                }
+                aux = true;
+                while(aux)
+                {
+                     m.setText("escolha uma localização para o seu bem pelo número: ");
+                     try
+                        {execute(m);}
+                     catch(TelegramApiException e)
+                         { e.printStackTrace; }
+                      this.listLocation(m,u);
+                     String r = u.getMessage().getText();
+                     try 
+                        { int co = Integer.parseInt(r);}
+                     catch (NumberFormatException e)
+                        {
+                             m.setText("ops,número em formato errado");
+                             continue;
+                        }
+                     
+                    
+                    
+                    
+                    
+               
+             
+           
 
     }
 
