@@ -11,5 +11,18 @@ public class Check throws ExceptionHave
               break;
              }
          }
-       }
+     }
+     
+     public static void CheckCode(ArrayList a,String s)
+     {
+       int help = s.parseInt(s);
+       for(int i = 0;i<a.size();i++)
+       {
+            if(help == a.get(i).getCode())
+            {
+                throw new ExceptionHave();
+                break;
+             }
+        }
+      }
   }
