@@ -13,7 +13,7 @@ public class Check throws ExceptionHave
          }
      }
      
-     public static void CheckCode(ArrayList a,String s)
+     public static void checkCode(ArrayList a,String s)
      {
        int help = s.parseInt(s);
        for(int i = 0;i<a.size();i++)
