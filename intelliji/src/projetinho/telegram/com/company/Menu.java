@@ -155,14 +155,25 @@ public class Menu implements SystemNeeds
                     { e.printStackTrace; }
                 String d = u.getMessage().getText();
                 l.setDescription(d);
-                aux = false;
-                locs.add(l);
-                m.setText("Localização ,criada com sucesso");
                 try
-                    {execute(m);}
-                catch(TelegramApiException e)
-                    { e.printStackTrace; }
+                {
+                    locs.add(l);
+                    m.setText("Localização ,criada com sucesso");
+                    aux = false;
+                    try
+                        {execute(m);}
+                    catch(TelegramApiException e)
+                        { e.printStackTrace; }
                 
+                 }
+                 catch(Exeception e)
+                 {
+                    m.setText("ops,aconteceu um erro!");
+                    try
+                        {execute(m);}
+                    catch(TelegramApiException e)
+                        { e.printStackTrace; }
+                 }
             }
            
      }
