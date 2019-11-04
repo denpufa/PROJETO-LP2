@@ -1,5 +1,5 @@
 package projetinho.telegram.com.company;
-public class Check< throws ExceptionHave
+public class Check throws ExceptionHave
 {
     public static void checkName(ArrayList a,String s) 
     {
