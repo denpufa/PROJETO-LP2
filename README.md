@@ -16,4 +16,9 @@ As bliotecas da api usada estão sendo incluidas por dependicas no arquivo iml d
 
 # CHECK LIST:
 OK-cadastrar Localizaocão.
-OK-Adicionar categoria.
+
+OK-Cadastrar categoria.
+
+OK-Cadastrar Bem.
+
+
