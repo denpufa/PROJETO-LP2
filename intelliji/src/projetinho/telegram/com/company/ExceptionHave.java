@@ -1,5 +1,7 @@
-import java.Lang.Exception;
+
 package projetinho.telegram.com.company;
+import java.Lang.Exception;
+
 public class ExceptionHave extends Exception
 {
     public String getMessage()
