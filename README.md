@@ -27,5 +27,9 @@ OK-Listar Categorias.
 
 OK-Listar bem por localização.
 
+OK-Listar bem por categoria.
+
+
+
 
 
