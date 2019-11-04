@@ -56,37 +56,37 @@ public class Menu implements SystemNeeds
                           this.registerLocation(m,u);
                           break;
                  case "2":
-                         this.registerCategory();
+                         this.registerCategory(m,u);
                          break;
                  case "3":
-                         this.registerPatrimony();
+                         this.registerPatrimony(m,u);
                          break;
                  case "4":
-                          this.listLocation();
+                          this.listLocation(m,u);
                           break;
                  case "5":
-                         this.listCategory();
+                         this.listCategory(m,u);
                          break;
                  case "6":
-                         this.listPatrimonyByCategory();
+                         this.listPatrimonyByCategory(m,u);
                          break;
                  case "7":
-                         this.listPatrimonyByLocation();
+                         this.listPatrimonyByLocation(m,u);
                          break;
                  case "8":
-                         this.searchPatrimonyByCode();
+                         this.searchPatrimonyByCode(m,u);
                          break;
                  case "9":
-                         this.searchPatrimonyByName();
+                         this.searchPatrimonyByName(m,u);
                          break;
                  case "10":
-                         this.searchPatrimonyByDescription();
+                         this.searchPatrimonyByDescription(m,u);
                          break;
                  case "11":
-                         this.movePatrimony();
+                         this.movePatrimony(m,u);
                          break;
                  case "12":
-                         this.generateReport();
+                         this.generateReport(m,u);
                          break;
                  default:
                         m.setText("Voçê não digitou uma opção valída,tente novamente");
