@@ -334,8 +334,51 @@ public class Menu implements SystemNeeds
                          { e.printStackTrace; }
                       this.listLocation(m,u);
                      String r = u.getMessage().getText();
-                     
-                        }
+                     try
+                        {
+                         Check.checkIfNameOn(locs,r);
+                         aux = false;
+                         c.setLocation(
+                         }
+                     catch(Exception e)
+                     {
+                         m.setText("esse nome não tá na lista mostrada");
+                         try
+                            {execute(m);}
+                        catch(TelegramApiException e)
+                            { e.printStackTrace; }
+                      }
+                 }
+                aux = true;
+                while(aux)
+                {
+                     m.setText("escolha uma categoria para o seu bem pelo nome: ");
+                     try
+                        {execute(m);}
+                     catch(TelegramApiException e)
+                         { e.printStackTrace; }
+                      this.listCategory(m,u);
+                     String r = u.getMessage().getText();
+                     try
+                        {
+                         Check.checkIfNameOn(category,r);
+                         aux = false;
+                         }
+                     catch(Exception e)
+                     {
+                         m.setText("esse nome não tá na lista mostrada");
+                         try
+                            {execute(m);}
+                        catch(TelegramApiException e)
+                            { e.printStackTrace; }
+                      }
+                 }
+                 
+                         
+                        
+                        
+                         
+                      
                         
                      
                     
