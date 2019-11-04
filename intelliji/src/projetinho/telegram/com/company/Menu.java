@@ -308,7 +308,7 @@ public class Menu implements SystemNeeds
                 catch(TelegramApiException e)
                     { e.printStackTrace; }
                  String r = u.getMessage().getText();
-                 c.setName(r);
+                 p.setName(r);
                }
                aux = true;
                while(aux)
@@ -322,7 +322,7 @@ public class Menu implements SystemNeeds
                 catch(TelegramApiException e)
                    { e.printStackTrace; }
                  String r = u.getMessage().getText();
-                 c.setDescription(r);
+                 p.setDescription(r);
                 }
                 aux = true;
                 while(aux)
@@ -336,9 +336,9 @@ public class Menu implements SystemNeeds
                      String r = u.getMessage().getText();
                      try
                         {
-                         Check.checkIfNameOn(locs,r);
+                         p.setLocation(Check.checkIfNameOn(locs,r));
                          aux = false;
-                         c.setLocation(
+                        
                          }
                      catch(Exception e)
                      {
@@ -361,7 +361,7 @@ public class Menu implements SystemNeeds
                      String r = u.getMessage().getText();
                      try
                         {
-                         Check.checkIfNameOn(category,r);
+                         p.setCategory(Check.checkIfNameOn(category,r));
                          aux = false;
                          }
                      catch(Exception e)
@@ -373,23 +373,21 @@ public class Menu implements SystemNeeds
                             { e.printStackTrace; }
                       }
                  }
-                 
-                         
-                        
-                        
-                         
-                      
-                        
-                     
+                 try
+                    {
+                        pratimonies.add(p);
+                        m.setText("bem adiconado com sucesso");
+                    try
+                       {execute(m);}
+                    catch(TelegramApiException e)
+                        { e.printStackTrace; }
                     
-                    
-                    
-                    
-               
-             
-           
-
-    }
+                }
+                catch(Exception e)
+                {
+                    m.setText("ops aconteceu um erro imprevisto,desculpe!");
+                }
+}
 
     @Override
     public void listLocation(SendMessage m,Update u)
