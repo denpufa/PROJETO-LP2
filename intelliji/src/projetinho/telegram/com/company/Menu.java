@@ -17,7 +17,7 @@ public class Menu implements SystemNeeds
     public  void  run() 
     {
         
-        bool permanecer = true;
+        boolean permanecer = true;
          //inicializando objetos da api do telegram.
          Update u = new Update();
          SendMessage m = new SendMessage();
@@ -118,7 +118,7 @@ public class Menu implements SystemNeeds
     public void registerLocation(SendMessage m,Update u)
     {
           Localizacao l = new Localizacao();
-          bool aux = true;
+          boolean aux = true;
           m.setChatId(u.getMessage.getChatId());
           while(aux)
           {
@@ -182,7 +182,7 @@ public class Menu implements SystemNeeds
     public void registerCategory(SendMessage m,Update u) 
     {
             Category c = new Category();
-            bool aux = true;
+            boolean aux = true;
              m.setChatId(u.getMessage().getChatId());
              while(aux)
              {
@@ -264,7 +264,7 @@ public class Menu implements SystemNeeds
     public void registerPatrimony(SendMessage m,Update u) 
     {
             Patrimony p = new Patrimony();
-            bool aux = true;
+            boolean aux = true;
              m.setChatId(u.getMessage().getChatId());
              while(aux)
              {
@@ -392,7 +392,7 @@ public class Menu implements SystemNeeds
     @Override
     public void listLocation(SendMessage m,Update u)
     {
-        for(int i;i<locs.size();i++)
+        for(int i=0;i<locs.size();i++)
         {
             m.setText(locs.get(i).getName());
              try
@@ -405,7 +405,7 @@ public class Menu implements SystemNeeds
     @Override
     public void listCategory(SendMessage m,Update u)
     {
-        for(int i;i<category.size();i++)
+        for(int i=0;i<category.size();i++)
         {
             m.setText(category.get(i).getName());
              try
@@ -421,7 +421,7 @@ public class Menu implements SystemNeeds
     {
 
     }
-    @override
+    @Override
     public void listPatrimonyByCategory(SendMessage m,Update u)
     {
     }
