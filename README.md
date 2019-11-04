@@ -21,4 +21,9 @@ OK-Cadastrar categoria.
 
 OK-Cadastrar Bem.
 
+OK-listar localizaçãoes.
+
+OK-Listar Categorias.
+
+
 
