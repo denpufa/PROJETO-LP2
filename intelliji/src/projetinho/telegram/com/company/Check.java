@@ -26,7 +26,7 @@ public class Check throws ExceptionHave
         }
       }
       
-      public static void checkIfHaveName(Arraylist a,String s)
+      public static void checkIfNameOn(Arraylist a,String s)
       {
             for(int i = 0;i<a.size();i++)
             {
