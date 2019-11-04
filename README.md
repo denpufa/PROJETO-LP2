@@ -15,7 +15,7 @@ As bliotecas da api usada estão sendo incluidas por dependicas no arquivo iml d
 
 
 # CHECK LIST:
-OK-cadastrar Localizaocão.
+OK-cadastrar Localização.
 
 OK-Cadastrar categoria.
 
@@ -24,6 +24,8 @@ OK-Cadastrar Bem.
 OK-listar localizaçãoes.
 
 OK-Listar Categorias.
+
+OK-Listar bem por localização.
 
 
 
