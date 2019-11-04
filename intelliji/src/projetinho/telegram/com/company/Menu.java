@@ -392,12 +392,27 @@ public class Menu implements SystemNeeds
     @Override
     public void listLocation(SendMessage m,Update u)
     {
-
+        for(int i;i<locs.size();i++)
+        {
+            m.setText(locs.get(i).getName());
+             try
+                {execute(m);}
+             catch(TelegramApiException e)
+                { e.printStackTrace; }
+        }
     }
 
     @Override
     public void listCategory(SendMessage m,Update u)
+    {
+        for(int i;i<category.size();i++)
         {
+            m.setText(category.get(i).getName());
+             try
+                {execute(m);}
+             catch(TelegramApiException e)
+                { e.printStackTrace; }
+        }
 
     }
 
