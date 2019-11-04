@@ -327,20 +327,16 @@ public class Menu implements SystemNeeds
                 aux = true;
                 while(aux)
                 {
-                     m.setText("escolha uma localização para o seu bem pelo número: ");
+                     m.setText("escolha uma localização para o seu bem pelo nome: ");
                      try
                         {execute(m);}
                      catch(TelegramApiException e)
                          { e.printStackTrace; }
                       this.listLocation(m,u);
                      String r = u.getMessage().getText();
-                     try 
-                        { int co = Integer.parseInt(r);}
-                     catch (NumberFormatException e)
-                        {
-                             m.setText("ops,número em formato errado");
-                             continue;
+                     
                         }
+                        
                      
                     
                     
