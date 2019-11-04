@@ -392,6 +392,7 @@ public class Menu implements SystemNeeds
     @Override
     public void listLocation(SendMessage m,Update u)
     {
+        m.setChatId(u.getMessage().getChatId());
         for(int i=0;i<locs.size();i++)
         {
             m.setText(locs.get(i).getName());
@@ -405,6 +406,7 @@ public class Menu implements SystemNeeds
     @Override
     public void listCategory(SendMessage m,Update u)
     {
+        m.setChatId(u.getMessage().getChatId());
         for(int i=0;i<category.size();i++)
         {
             m.setText(category.get(i).getName());
@@ -419,8 +421,46 @@ public class Menu implements SystemNeeds
     @Override
     public void listPatrimonyByLocation(SendMessage m,Update u) 
     {
-
-    }
+        
+        m.setChatId(u.getMessage().getChatId());
+        boolean aux = true;
+        while(aux)
+        {
+            m.setText("escolha uma localização para o seu bem pelo nome: ");
+            try
+               {execute(m);}
+            catch(TelegramApiException e)
+                { e.printStackTrace; }
+            this.listLocation(m,u);
+            String r = u.getMessage().getText();
+            try
+            {
+                Check.checkIfNameOn(locs,r);
+             }
+             catch(Exception e)
+             {
+                m.setText("esse nome não tá na lista mostrada");
+                try
+                    {execute(m);}
+                catch(TelegramApiException e)
+                    { e.printStackTrace; }
+                 aux = false;
+                 continue;
+              }
+              for(int i = 0;i<pratimonies.size();i++)
+              {
+                  if(pratimonies.get(i).getLocation().getName().equals(r))
+                  {
+                      m.setText(pratimonies.get(i).getName());
+                      try
+                         {execute(m);}
+                      catch(TelegramApiException e)
+                        { e.printStackTrace; }
+                   }
+               }
+     
+          }
+   }
     @Override
     public void listPatrimonyByCategory(SendMessage m,Update u)
     {
