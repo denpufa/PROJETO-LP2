@@ -508,8 +508,36 @@ public class Menu implements SystemNeeds
     @Override
     public void searchPatrimonyByCode(SendMessage m,Update u) 
     {
-
-    }
+        boolean aux = true;
+        while(aux)
+        {
+            m.setChatId(u.getMessage().getChatId());
+            m.setText("digite um codigo para busca:")
+            String r = u.getMessage().getText();
+            try 
+               { 
+                int co = Integer.parseInt(r);
+                aux = false;
+               }
+             catch (NumberFormatException e)
+             {
+                  m.setText("código com formato invalído!");
+                  continue;
+             }
+             for(int i = 0;patrimonies.size();i++)
+             {
+                 if(patrimonies.get(i).getCode() == co)
+                 {
+                     m.setText(pratimonies.get(i).getName());
+                     try
+                        {execute(m);}
+                      catch(TelegramApiException e)
+                        { e.printStackTrace; }
+                 }
+             }
+         }
+        
+     }
 
     @Override
     public void searchPatrimonyByName(SendMessage m,Update u) 
