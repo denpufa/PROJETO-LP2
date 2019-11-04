@@ -29,7 +29,7 @@ OK-Listar bem por localização.
 
 OK-Listar bem por categoria.
 
-OK-buscar pratimonio por código.
+OK-buscar bem por código.
 
 
 
