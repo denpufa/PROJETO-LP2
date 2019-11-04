@@ -25,4 +25,17 @@ public class Check throws ExceptionHave
              }
         }
       }
+      
+      public static void checkIfHaveName(Arraylist a,String s)
+      {
+            for(int i = 0;i<a.size();i++)
+            {
+               if(s.equals(a.get(i).getName())
+               {
+                    return;
+               }
+             throw new ExceptionHave();
+             break;
+        }
+        
   }
