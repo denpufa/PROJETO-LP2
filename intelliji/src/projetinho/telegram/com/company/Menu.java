@@ -132,8 +132,8 @@ public class Menu implements SystemNeeds
                       m.setText("Esse nome já foi cadastrado tente outro por favor");
                         try
                            {execute(m);}
-                        catch(TelegramApiException e)
-                            { e.printStackTrace; } 
+                        catch(TelegramApiException j)
+                            {j.printStackTrace; }
                    }
            }
            aux = true;
@@ -162,8 +162,8 @@ public class Menu implements SystemNeeds
                     m.setText("ops, aconteceu um erro!");
                     try
                         {execute(m);}
-                    catch(TelegramApiException e)
-                        { e.printStackTrace; }
+                    catch(TelegramApiException j)
+                        { j.printStackTrace; }
                  }
             }
            
@@ -183,8 +183,9 @@ public class Menu implements SystemNeeds
                 catch(TelegramApiException e)
                     { e.printStackTrace; }
                 String r = u.getMessage().getText();
-                try 
-                { int co = Integer.parseInt(r);}
+                int co;
+                try
+                {  co = Integer.parseInt(r);}
                 catch (NumberFormatException e)
                 {
                     m.setText("código com formato invalído!");
@@ -265,8 +266,9 @@ public class Menu implements SystemNeeds
                 catch(TelegramApiException e)
                     { e.printStackTrace; }
                 String r = u.getMessage().getText();
-                try 
-                { int co = Integer.parseInt(r);}
+                int co;
+                try
+                {  co = Integer.parseInt(r);}
                 catch (NumberFormatException e)
                 {
                     m.setText("código com formato invalído!");
@@ -283,8 +285,8 @@ public class Menu implements SystemNeeds
                         m.setText("código ja existe!");
                         try
                             {execute(m);}
-                        catch(TelegramApiException e)
-                            {e.printStackTrace;}
+                        catch(TelegramApiException j)
+                            {j.printStackTrace;}
                      }
              }
              aux = true;
@@ -336,8 +338,8 @@ public class Menu implements SystemNeeds
                          m.setText("esse nome não tá na lista mostrada");
                          try
                             {execute(m);}
-                        catch(TelegramApiException e)
-                            { e.printStackTrace; }
+                        catch(TelegramApiException j)
+                            { j.printStackTrace; }
                       }
                  }
                 aux = true;
@@ -360,8 +362,8 @@ public class Menu implements SystemNeeds
                          m.setText("esse nome não tá na lista mostrada");
                          try
                             {execute(m);}
-                        catch(TelegramApiException e)
-                            { e.printStackTrace; }
+                        catch(TelegramApiException j)
+                            { j.printStackTrace; }
                       }
                  }
                  try
@@ -433,8 +435,8 @@ public class Menu implements SystemNeeds
                 m.setText("esse nome não tá na lista mostrada");
                 try
                     {execute(m);}
-                catch(TelegramApiException e)
-                    { e.printStackTrace; }
+                catch(TelegramApiException j)
+                    { j.printStackTrace; }
                  aux = false;
                  continue;
               }
@@ -475,8 +477,8 @@ public class Menu implements SystemNeeds
                 m.setText("esse nome não tá na lista mostrada");
                 try
                     {execute(m);}
-                catch(TelegramApiException e)
-                    { e.printStackTrace; }
+                catch(TelegramApiException j)
+                    { j.printStackTrace; }
                  aux = false;
                  continue;
               }
@@ -505,9 +507,10 @@ public class Menu implements SystemNeeds
             m.setChatId(u.getMessage().getChatId());
             m.setText("digite um codigo para busca:")
             String r = u.getMessage().getText();
-            try 
+            int co;
+            try
                { 
-                int co = Integer.parseInt(r);
+                 co = Integer.parseInt(r);
                 aux = false;
                }
              catch (NumberFormatException e)
@@ -515,7 +518,7 @@ public class Menu implements SystemNeeds
                   m.setText("código com formato invalído!");
                   continue;
              }
-             for(int i = 0;patrimonies.size();i++)
+             for(int i = 0;i<patrimonies.size();i++)
              {
                  if(patrimonies.get(i).getCode() == co)
                  {
@@ -533,6 +536,8 @@ public class Menu implements SystemNeeds
     @Override
     public void searchPatrimonyByName(SendMessage m,Update u) 
     {
+        m.setChatId(u.getMessage().getChatId());
+
 
     }
 
