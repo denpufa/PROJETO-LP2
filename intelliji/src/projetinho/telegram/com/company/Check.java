@@ -1,7 +1,10 @@
 package projetinho.telegram.com.company;
-public class Check throws ExceptionHave
+
+import java.util.ArrayList;
+
+public class Check
 {
-    public static void checkName(ArrayList a,String s) 
+    public static void checkName(ArrayList a,String s) throws ExceptionHave
     {
         for(int i=0;i<a.size();i++)
         {
@@ -13,7 +16,7 @@ public class Check throws ExceptionHave
          }
      }
      
-     public static void checkCode(ArrayList a,String s)
+     public static void checkCode(ArrayList a,String s) throws ExceptionHave
      {
        int help = s.parseInt(s);
        for(int i = 0;i<a.size();i++)
@@ -26,7 +29,7 @@ public class Check throws ExceptionHave
         }
       }
       
-      public static <T> checkIfNameOn(Arraylist<T> a,String s)
+      public static <T> checkIfNameOn(Arraylist<T> a,String s) throws ExceptionHave
       {
             for(int i = 0;i<a.size();i++)
             {

@@ -14,16 +14,16 @@ public class Patrimony extends Name{
 
     /**
      * @brief  Standardized Constructor.
-     * @param  String, String.
+     * @param  //String, String.
      */
 
-    Patrimony(int code,  String name, String description, Location loc, PatrimonyCategory ca){
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.loc = loc;
-        this.ca = ca;
-    }
+//    Patrimony(int code,  String name, String description, Location loc, PatrimonyCategory ca){
+//        this.code = code;
+//        this.name = name;
+//        this.description = description;
+//        this.loc = loc;
+//        this.ca = ca;
+//    }
 
     /**
      * @brief Setters.
@@ -32,7 +32,7 @@ public class Patrimony extends Name{
 
      public void setLocation(Location loc){ this.loc = loc; }
 
-    public int setCategory(PatrimonyCategory ca){ this.ca = ca; }
+    public void setCategory(PatrimonyCategory ca){ this.ca = ca; }
 
     /**
      * @brief Setters.

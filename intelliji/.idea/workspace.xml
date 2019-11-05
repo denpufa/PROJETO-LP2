@@ -35,6 +35,11 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="projetinho.telegram.com.company" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -75,6 +80,7 @@
       <workItem from="1572384921959" duration="31000" />
       <workItem from="1572540042680" duration="2533000" />
       <workItem from="1572545732250" duration="2822000" />
+      <workItem from="1572911637911" duration="2871000" />
     </task>
     <servers />
   </component>

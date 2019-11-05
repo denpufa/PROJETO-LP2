@@ -25,20 +25,20 @@ public class Menu implements SystemNeeds
         {
             
 
-            m.setText("seja bem vindo ao gerenciador escolha uma opção   pelo número,tenha um bom dia "  +
-                            "1-registrar localização" + 
-                            "2-registrar categoria de bem"  +
-                            "3-registrar bem (patrimônio)" +
-                            "4-Listar localizações" +
-                            "5-Listar categorias"  +
-                            "6-Listar bem por categoria" +
-                            "7-Listar bem por localização" +
-                            "8-Procurar patrimonio por código"  +
-                            "9-Procurar patrimonio por nome" +
-                            "10-Procurar patrimonio por descrição" +
-                            "11-Mover patrimonio entre as localizações" +
-                            "12-Gerar relátorio" +
-                            "0-sair do menu");
+            m.setText("Seja bem vindo ao gerenciador escolha uma opção pelo número, tenha um bom dia "  +
+                            "1-Registrar Localização" +
+                            "2-Registrar Categoria de bem"  +
+                            "3-Registrar Bem (Patrimônio)" +
+                            "4-Listar Localizações" +
+                            "5-Listar Categorias"  +
+                            "6-Listar Bem por Categoria" +
+                            "7-Listar Bem por Localização" +
+                            "8-Procurar Patrimônio por Código"  +
+                            "9-Procurar Patrimônio por nome" +
+                            "10-Procurar Patrimônio por descrição" +
+                            "11-Mover Patrimônio entre as localizações" +
+                            "12-Gerar Relátorio" +
+                            "0-Sair do menu");
             m.setChatId(u.getMessage.getChatId());
             try
                 {execute(m);}
@@ -101,28 +101,19 @@ public class Menu implements SystemNeeds
            }
       }
          
-                 
-        /**
+     /**
      * @brief Mandatory methods of SystemNeeds
-     */             
-        
-        
-            
-
-
-            
-   
-
+     */
 
     @Override
     public void registerLocation(SendMessage m,Update u)
     {
-          Localizacao l = new Localizacao();
+          Location l = new Location();
           boolean aux = true;
           m.setChatId(u.getMessage.getChatId());
           while(aux)
           {
-              m.setText("digite um nome para a localização a ser criada:");
+              m.setText("Digite um nome para a localização a ser criada:");
               try
                  {execute(m);}
               catch(TelegramApiException e)
@@ -138,7 +129,7 @@ public class Menu implements SystemNeeds
                   }
                catch(Exception e)
                   { 
-                      m.setText("esse nome já foi cadastrado tente outro por favor");
+                      m.setText("Esse nome já foi cadastrado tente outro por favor");
                         try
                            {execute(m);}
                         catch(TelegramApiException e)
@@ -148,7 +139,7 @@ public class Menu implements SystemNeeds
            aux = true;
            while(aux)
            {
-                m.setText("digite uma descrição para a localização a ser criada:");
+                m.setText("Digite uma descrição para a localização a ser criada:");
                 try
                     {execute(m);}
                 catch(TelegramApiException e)
@@ -158,7 +149,7 @@ public class Menu implements SystemNeeds
                 try
                 {
                     locs.add(l);
-                    m.setText("Localização ,criada com sucesso");
+                    m.setText("Localização , criada com sucesso");
                     aux = false;
                     try
                         {execute(m);}
@@ -168,7 +159,7 @@ public class Menu implements SystemNeeds
                  }
                  catch(Exeception e)
                  {
-                    m.setText("ops,aconteceu um erro!");
+                    m.setText("ops, aconteceu um erro!");
                     try
                         {execute(m);}
                     catch(TelegramApiException e)
@@ -181,7 +172,7 @@ public class Menu implements SystemNeeds
     @Override
     public void registerCategory(SendMessage m,Update u) 
     {
-            Category c = new Category();
+            PatrimonyCategory c = new PatrimonyCategory();
             boolean aux = true;
              m.setChatId(u.getMessage().getChatId());
              while(aux)

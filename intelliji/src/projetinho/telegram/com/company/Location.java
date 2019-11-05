@@ -1,19 +1,19 @@
 package projetinho.telegram.com.company;
 
 /**
- * @brief  Locations class.
+ * @brief  Locations class is responsible for ...
  */
 public class Location extends Name
 {
 
     /**
      * @brief  Standardized Constructor.
-     * @param  String, String.
+     * @param  //String, String.
      */
-    Location (String name,String description)
-    {
-        this.name = name;
-        this.description = description;
-    }
+//    Location (String name,String description)
+////    {
+////        this.name = name;
+////        this.description = description;
+////    }
 
 }
