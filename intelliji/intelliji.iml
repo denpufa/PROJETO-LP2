@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
         <groupId>org.telegram</groupId>
-        <artifactId>telegrambots</artifactId>
+        <artifactId>telegrambo  ts</artifactId>
         <version>4.4.0</version>
     </dependency>
   </dependencies>
