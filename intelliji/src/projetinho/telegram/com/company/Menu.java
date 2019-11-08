@@ -541,6 +541,7 @@ public class Menu implements SystemNeeds
         while(aux)
         {
             m.setText("digite  do bem :  ");
+            int y = 0;
             try
                {execute(m);}
             catch(TelegramApiException e)
@@ -550,18 +551,23 @@ public class Menu implements SystemNeeds
             {
                 if(pratimonies.get(i).getName().equals(r))
                 {
+                    int y=1;
                     m.setText("bem achado" + "localização: " + pratimonies.get(i).getLocation());
                     try
                       {execute(m);}
                     catch(TelegramApiException e)
                       { e.printStackTrace; }
-                    return;
+                    
                 }       
-            }    
+            }
+          if(y == 0)
+          {
             m.setText("bem não encontrado digite 1 para tentar outro ,2 para sair");
             r = u.getMessage.getText();
             if(r.equals("2"))
                 aux = false;
+          }
+        
         }
             
                
