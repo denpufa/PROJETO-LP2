@@ -540,7 +540,7 @@ public class Menu implements SystemNeeds
         boolean aux = true;
         while(aux)
         {
-            m.setText("digite  do bem :  ");
+            m.setText("digite   o nome do bem :  ");
             int y = 0;
             try
                {execute(m);}
@@ -552,7 +552,7 @@ public class Menu implements SystemNeeds
                 if(pratimonies.get(i).getName().equals(r))
                 {
                     int y=1;
-                    m.setText("bem achado" + "localização: " + pratimonies.get(i).getLocation());
+                    m.setText("bem achado" + "localização: " + pratimonies.get(i).getLocation().getName());
                     try
                       {execute(m);}
                     catch(TelegramApiException e)
@@ -577,9 +577,39 @@ public class Menu implements SystemNeeds
     @Override
     public void searchPatrimonyByDescription(SendMessage m,Update u) 
     {
-        
-
-    }
+        int y = 0 ;
+        m.setChatId(u.getMessage().getChatId());
+        boolean aux = true;
+        while(aux)
+        {
+          m.setText("digite a descrição do bem: ");
+          String r = u.getMessage().getText();
+          for(int i = 0;i<patrimonies.size();i++)
+          {
+              if(patrimonies.get(i).getDescription().equals(r))
+              {
+                 y = 1;
+                  m.setText("bem encontrado" + "localização" + patrimonies.get(i).getLocation().getName());
+                  try
+                    {execute(m);}
+                 catch(TelegramApiException e)
+                    { e.printStackTrace; }
+              }
+          }
+          if (y == 0)
+          {
+              m.setText("bem nao encontrado para tentar novamente digite 1 para sair digite 0");
+              try
+                 {execute(m);}
+              catch(TelegramApiException e)
+                 { e.printStackTrace; }
+               r = u.getMessage.getText();
+              if(r.equals(0))
+                  aux = false;
+           }
+        }
+              
+      }
 
     @Override
     public void movePatrimony(SendMessage m,Update u) 
