@@ -537,8 +537,30 @@ public class Menu implements SystemNeeds
     public void searchPatrimonyByName(SendMessage m,Update u) 
     {
         m.setChatId(u.getMessage().getChatId());
-
-
+        boolean aux = true;
+        while(aux)
+        {
+            m.setText("digite  do bem :  ");
+            try
+               {execute(m);}
+            catch(TelegramApiException e)
+               { e.printStackTrace; }
+            String r = u.getMessage().getText();
+            for(int i = 0;i<patrimonies.size();i++)
+            {
+                if(pratimonies.get(i).getName().equals(r))
+                {
+                    m.setText("bem achado" + "localização: " + pratimonies.get(i).getLocation());
+                    try
+                      {execute(m);}
+                    catch(TelegramApiException e)
+                      { e.printStackTrace; }
+                    return;
+                }       
+                
+            m.setText("bem não encontrado digite 1 para tentar outro ,2 para sair");
+            r = u.getMessage.getText();
+                
     }
 
     @Override
