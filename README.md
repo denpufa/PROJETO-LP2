@@ -33,6 +33,8 @@ OK-buscar bem por código.(So falta colocar a opção para ver todas os campos d
 
 OK-buscar bem por nome.
 
+OK-buscar por descrição.
+
 
 
 
