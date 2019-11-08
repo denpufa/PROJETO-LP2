@@ -557,9 +557,14 @@ public class Menu implements SystemNeeds
                       { e.printStackTrace; }
                     return;
                 }       
-                
+            }    
             m.setText("bem não encontrado digite 1 para tentar outro ,2 para sair");
             r = u.getMessage.getText();
+            if(r.equals("2"))
+                aux = false;
+        }
+            
+               
                 
     }
 
