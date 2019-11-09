@@ -614,6 +614,8 @@ public class Menu implements SystemNeeds
     @Override
     public void movePatrimony(SendMessage m,Update u) 
     {
+          
+        
 
     }
 
