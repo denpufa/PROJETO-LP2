@@ -1,4 +1,7 @@
 package projetinho.telegram.com.company;
+import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.send.SendMessage;
+
 
 import java.util.ArrayList;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
