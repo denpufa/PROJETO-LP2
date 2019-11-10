@@ -1,5 +1,8 @@
 package projetinho.telegram.com.company; 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.send.Message;
+
 
 public class Bot extends TelegramLongPollingBot {
 
