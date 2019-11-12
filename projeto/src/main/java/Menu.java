@@ -61,37 +61,37 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 case 1:
                     this.registerLocation(m,u);
                     break;
-                case '2':
+                case 2:
                     this.registerCategory(m,u);
                     break;
-                case '3':
+                case 3:
                     this.registerPatrimony(m,u);
                     break;
-                case '4':
+                case 4:
                     this.listLocation(m,u);
                     break;
-                case '5':
+                case 5:
                     this.listCategory(m,u);
                     break;
-                case '6':
+                case 6:
                     this.listPatrimonyByCategory(m,u);
                     break;
-                case '7':
+                case 7:
                     this.listPatrimonyByLocation(m,u);
                     break;
-                case '8':
+                case 8:
                     this.searchPatrimonyByCode(m,u);
                     break;
-                case '9':
+                case 9:
                     this.searchPatrimonyByName(m,u);
                     break;
-                case '10':
+                case 10:
                     this.searchPatrimonyByDescription(m,u);
                     break;
-                case '11':
+                case 11:
                     this.movePatrimony(m,u);
                     break;
-                case '12':
+                case 12:
                     this.generateReport(m,u);
                     break;
                 default:
