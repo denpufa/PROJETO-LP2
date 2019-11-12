@@ -1,13 +1,11 @@
 
 import java.util.ArrayList;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static java.lang.Integer.parseInt;
-
-public class Menu extends TelegramLongPollingBot implements SystemNeeds
+public class Menu  extends  TelegramLongPollingBot implements SystemNeeds
 {
     /**
      * @brief Patrimony class attributes.
@@ -51,47 +49,46 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             }
             
             String opcao = u.getMessage().getText();
-            int op = parseInt(opcao);
             //o break no switch é por uma questão de previnir.
-            switch(op)
+            switch(opcao)
             {
-                case 0:
+                case "0":
                     permanecer = false;
                     break;
-                case 1:
+                case "1":
                     this.registerLocation(m,u);
                     break;
-                case '2':
+                case "2":
                     this.registerCategory(m,u);
                     break;
-                case '3':
+                case "3":
                     this.registerPatrimony(m,u);
                     break;
-                case '4':
+                case "4":
                     this.listLocation(m,u);
                     break;
-                case '5':
+                case "5":
                     this.listCategory(m,u);
                     break;
-                case '6':
+                case "6":
                     this.listPatrimonyByCategory(m,u);
                     break;
-                case '7':
+                case "7":
                     this.listPatrimonyByLocation(m,u);
                     break;
-                case '8':
+                case "8":
                     this.searchPatrimonyByCode(m,u);
                     break;
-                case '9':
+                case "9":
                     this.searchPatrimonyByName(m,u);
                     break;
-                case '10':
+                case "10":
                     this.searchPatrimonyByDescription(m,u);
                     break;
-                case '11':
+                case "11":
                     this.movePatrimony(m,u);
                     break;
-                case '12':
+                case "12":
                     this.generateReport(m,u);
                     break;
                 default:
@@ -113,7 +110,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
      * @brief Mandatory methods of SystemNeeds
      */
 
-
+    @Override
     public void registerLocation(SendMessage m,Update u)
     {
         Location l = new Location();
@@ -132,7 +129,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             try
             {
                 String n = u.getMessage().getText();
-                Check.checkNameL(locs,n);
+                Check.checkName(locs,n);
                 aux = false;
                 l.setName(n);
 
@@ -142,9 +139,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             {
                 m.setText("Esse nome já foi cadastrado tente outro por favor");
                 try
-                {
-                    execute(m);
-                }
+                {u.execute(m);}
                 catch(TelegramApiException j)
                 {j.printStackTrace(); }
             }
@@ -154,9 +149,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
         {
             m.setText("Digite uma descrição para a localização a ser criada:");
             try
-            {
-                execute(m);
-            }
+            {execute(m);}
             catch(TelegramApiException e)
             { e.printStackTrace(); }
             String d = u.getMessage().getText();
@@ -172,7 +165,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 { e.printStackTrace(); }
 
             }
-            catch(Exception e)
+            catch(Exeception e)
             {
                 m.setText("ops, aconteceu um erro!");
                 try
@@ -184,7 +177,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void registerCategory(SendMessage m,Update u)
     {
         PatrimonyCategory c = new PatrimonyCategory();
@@ -194,15 +187,13 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
         {
             m.setText("digite um código  para a sua categoria de bem:");
             try
-            {
-                execute(m);
-            }
+            {execute(m);}
             catch(TelegramApiException e)
             { e.printStackTrace(); }
             String r = u.getMessage().getText();
             int co;
             try
-            {  co = parseInt(r);}
+            {  co = Integer.parseInt(r);}
             catch (NumberFormatException e)
             {
                 m.setText("código com formato invalído!");
@@ -210,8 +201,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             }
             try
             {
-                String ca = Integer.toString(co);
-                Check.checkCodeC(category,ca);
+                Check.checkCode(category,co);
                 aux = false;
                 c.setCode(co);
             }
@@ -220,8 +210,8 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 m.setText("código ja existe!");
                 try
                 {execute(m);}
-                catch(TelegramApiException l)
-                {l.printStackTrace();}
+                catch(TelegramApiException e)
+                {e.printStackTrace();}
             }
         }
         aux = true;
@@ -268,9 +258,9 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             aux = false;
         }
     }
+}
 
-
-
+    @Override
     public void registerPatrimony(SendMessage m,Update u)
     {
         Patrimony p = new Patrimony();
@@ -286,7 +276,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             int co;
             try
-            {  co = parseInt(r);}
+            {  co = Integer.parseInt(r);}
             catch (NumberFormatException e)
             {
                 m.setText("código com formato invalído!");
@@ -294,7 +284,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             }
             try
             {
-                Check.checkCodeP(patrimonies,co);
+                Check.checkCode(patrimonies,co);
                 aux = false;
                 p.setCode(co);
             }
@@ -331,7 +321,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 aux = false;
             }
             catch(TelegramApiException e)
-            { e.printStackTrace(); }
+            { e.printStackTrace; }
             String r = u.getMessage().getText();
             p.setDescription(r);
         }
@@ -347,7 +337,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             try
             {
-                p.setLocation(Check.checkIfNameOnL(locs,r));
+                p.setLocation(Check.checkIfNameOn(locs,r));
                 aux = false;
 
             }
@@ -372,7 +362,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             try
             {
-                p.setCategory(Check.checkIfNameOnPC(category,r));
+                p.setCategory(Check.checkIfNameOn(category,r));
                 aux = false;
             }
             catch(Exception e)
@@ -386,7 +376,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
         }
         try
         {
-            patrimonies.add(p);
+            pratimonies.add(p);
             m.setText("bem adiconado com sucesso");
             try
             {execute(m);}
@@ -400,6 +390,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
         }
     }
 
+    @Override
     public void listLocation(SendMessage m,Update u)
     {
         m.setChatId(u.getMessage().getChatId());
@@ -413,7 +404,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
         }
     }
 
-
+    @Override
     public void listCategory(SendMessage m,Update u)
     {
         m.setChatId(u.getMessage().getChatId());
@@ -428,7 +419,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void listPatrimonyByLocation(SendMessage m,Update u)
     {
 
@@ -445,7 +436,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             try
             {
-                Check.checkIfNameOnL(locs,r);
+                Check.checkIfNameOn(locs,r);
             }
             catch(Exception e)
             {
@@ -457,11 +448,11 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 aux = false;
                 continue;
             }
-            for(int i = 0;i<patrimonies.size();i++)
+            for(int i = 0;i<pratimonies.size();i++)
             {
-                if(patrimonies.get(i).getLocation().getName().equals(r))
+                if(pratimonies.get(i).getLocation().getName().equals(r))
                 {
-                    m.setText(patrimonies.get(i).getName());
+                    m.setText(pratimonies.get(i).getName());
                     try
                     {execute(m);}
                     catch(TelegramApiException e)
@@ -471,7 +462,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
         }
     }
-
+    @Override
     public void listPatrimonyByCategory(SendMessage m,Update u)
     {
         m.setChatId(u.getMessage().getChatId());
@@ -487,7 +478,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             try
             {
-                Check.checkIfNameOnL(locs,r);
+                Check.checkIfNameOn(locs,r);
             }
             catch(Exception e)
             {
@@ -499,11 +490,11 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
                 aux = false;
                 continue;
             }
-            for(int i = 0;i<patrimonies.size();i++)
+            for(int i = 0;i<pratimonies.size();i++)
             {
-                if(patrimonies.get(i).getCategory().getName().equals(r))
+                if(pratimonies.get(i).getCategory.getName.equals(r))
                 {
-                    m.setText(patrimonies.get(i).getName());
+                    m.setText(pratimonies.get(i).getName());
                     try
                     {execute(m);}
                     catch(TelegramApiException e)
@@ -515,19 +506,19 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void searchPatrimonyByCode(SendMessage m,Update u)
     {
         boolean aux = true;
         while(aux)
         {
             m.setChatId(u.getMessage().getChatId());
-            m.setText("digite um codigo para busca:");
+            m.setText("digite um codigo para busca:")
             String r = u.getMessage().getText();
             int co;
             try
             {
-                co = parseInt(r);
+                co = Integer.parseInt(r);
                 aux = false;
             }
             catch (NumberFormatException e)
@@ -539,7 +530,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             {
                 if(patrimonies.get(i).getCode() == co)
                 {
-                    m.setText(patrimonies.get(i).getName());
+                    m.setText(pratimonies.get(i).getName());
                     try
                     {execute(m);}
                     catch(TelegramApiException e)
@@ -550,7 +541,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void searchPatrimonyByName(SendMessage m,Update u)
     {
         m.setChatId(u.getMessage().getChatId());
@@ -566,10 +557,10 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
             String r = u.getMessage().getText();
             for(int i = 0;i<patrimonies.size();i++)
             {
-                if(patrimonies.get(i).getName().equals(r))
+                if(pratimonies.get(i).getName().equals(r))
                 {
                     int y=1;
-                    m.setText("bem achado" + "localização: " + patrimonies.get(i).getLocation().getName());
+                    m.setText("bem achado" + "localização: " + pratimonies.get(i).getLocation().getName());
                     try
                     {execute(m);}
                     catch(TelegramApiException e)
@@ -591,7 +582,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void searchPatrimonyByDescription(SendMessage m,Update u)
     {
         int y = 0 ;
@@ -628,7 +619,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void movePatrimony(SendMessage m,Update u)
     {
 
@@ -636,7 +627,7 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     }
 
-
+    @Override
     public void generateReport(SendMessage m,Update u)
     {
 
@@ -656,4 +647,4 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 }
 
 
-
+}
