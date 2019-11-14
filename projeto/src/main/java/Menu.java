@@ -670,14 +670,24 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
               
               
                     
-          
+         
           m.sexText("agora escolha uma nova localização para o seu bem digitando  o nome no final da lista");
           listCategory(m,u);
           String t = u.getMessage().getText();
           for(int i = 0;i<locs.size();i++)
            {
-                if(
-          
+                if(locs.get(i).getName().equals(t))
+                 {    
+                     indiceofloc = i;
+                      aux = false;
+                 }
+            }
+            if(aux)
+                continue;
+            
+              
+            
+            
           
          
           
