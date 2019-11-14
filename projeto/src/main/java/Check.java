@@ -11,7 +11,7 @@ public class Check
             if(s.equals(a.get(i).getName()))
             {
               throw  new ExceptionHave();
-              break;
+              //break;
              }
          }
      }
@@ -23,7 +23,7 @@ public class Check
             if(s.equals(a.get(i).getName()))
             {
                 throw  new ExceptionHave();
-                break;
+                //break;
             }
         }
     }
@@ -36,7 +36,7 @@ public class Check
             if(s == a.get(i).getCode())
             {
                 throw new ExceptionHave();
-                break;
+                //break;
              }
         }
      }
@@ -51,47 +51,48 @@ public class Check
             if(help == a.get(i).getCode())
             {
                 throw new ExceptionHave();
-                break;
+                //break;
             }
         }
     }
-    public static Patrimony checkIfNameOnP(ArrayList<Patrimony> a,String s) throws ExceptionHave
+    public static void checkIfNameOnP(ArrayList<Patrimony> a, String s) throws ExceptionHave
     {
         for(int i = 0;i<a.size();i++)
         {
-            if(s.equals(a.get(i).getName())
+            if(s.equals(a.get(i).getName()))
             {
-                return a.get(i);
+                //return a.get(i);
             }
             throw new ExceptionHave();
-            break;
+            //break;
+
         }
 
     }
 
-    public static PatrimonyCategory checkIfNameOnPC(ArrayList<PatrimonyCategory> a,String s) throws ExceptionHave
+    public static void checkIfNameOnPC(ArrayList<PatrimonyCategory> a,String s) throws ExceptionHave
     {
         for(int i = 0;i<a.size();i++)
         {
-            if(s.equals(a.get(i).getName())
+            if(s.equals(a.get(i).getName()))
             {
-                return a.get(i);
+                //return a.get(i);
             }
             throw new ExceptionHave();
-            break;
+            //break;
         }
     }
 
-    public static Location checkIfNameOnL(ArrayList<Location> a,String s) throws ExceptionHave
+    public static void checkIfNameOnL(ArrayList<Location> a,String s) throws ExceptionHave
     {
         for(int i = 0;i<a.size();i++)
         {
-            if(s.equals(a.get(i).getName())
+            if(s.equals(a.get(i).getName()))
             {
-                return a.get(i);
+                //return a.get(i);
             }
             throw new ExceptionHave();
-            break;
+            //break;
         }
     }
 }
