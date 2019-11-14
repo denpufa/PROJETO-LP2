@@ -631,7 +631,57 @@ public class Menu extends TelegramLongPollingBot implements SystemNeeds
 
     public void movePatrimony(SendMessage m,Update u)
     {
+        int indiceofname;
+        int indiceofloc;
+        bolean aux = true;
+        while(true)
+        {
+            
+            m.setText("escolha  patrimonio a ser movido pelo nome,digite o nome logo a apos a listagem")
+            try
+              {execute(m);}
+            catch(TelegramApiException e)
+              { e.printStackTrace(); }
+              for(int i = 0;i<patrimonies.size();i++)
+              {
+                    m.setText(patrimonies.get(i).getName());
+                    try
+                        {execute(m);}
+                    catch(TelegramApiException e)
+                        {e.printStackTrace();}
 
+              }
+              String r = u.getMessage().getText();
+              for(int i = 0;i<patrimonies.size();i++)
+              {
+                    if(patrimonies.get(i).getName().equals(r))
+                    {
+                            indiceofname = i;
+                            aux = false;
+                     }
+                            
+                                          
+                
+                        
+              }
+              if(aux)
+                continue;
+              
+              
+              
+                    
+          
+          m.sexText("agora escolha uma nova localização para o seu bem digitando  o nome no final da lista");
+          listCategory(m,u);
+          String t = u.getMessage().getText();
+          for(int i = 0;i<locs.size();i++)
+           {
+                if(
+          
+          
+         
+          
+        
 
 
     }
