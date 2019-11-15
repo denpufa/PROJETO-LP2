@@ -139,8 +139,8 @@ public class Bot extends  TelegramLongPollingBot
                
                     message.setText("digite uma descrição para sua localização: ");
                     
-                     Patrimony c = new Patrimony(name,desc);
-                     estoque.locs.add(c);
+                     Loocation l = new Location(name,desc);
+                     estoque.locs.add(l);
                     
             }
                     
