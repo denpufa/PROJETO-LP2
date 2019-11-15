@@ -12,6 +12,7 @@ public class Bot extends  TelegramLongPollingBot
         //System.out.println(update.getMessage().getFrom().getFirstName());
         String command = update.getMessage().getText();
         SendMessage message = new SendMessage();
+        Check check = new Check();
 
         if (command.equals("/myname"))
         {
@@ -111,7 +112,7 @@ public class Bot extends  TelegramLongPollingBot
         
 
         if (command.equals("1")) {
-
+                
                 boolean aux = true;
                 while(aux) 
                 {
@@ -122,10 +123,11 @@ public class Bot extends  TelegramLongPollingBot
                         e.printStackTrace();
                     }
                     try {
-                        Check.checkIfNameOnL(estoque.locs, name);
+                        check.checkIfNameOnL(estoque.locs, name);
                         aux = false;
                     } catch (ExceptionHave exceptionHave) {
                             message.setText("esse nome de localização ja existe");
+                            
                             try {
                                 execute(message);
                                 } catch (TelegramApiException e) {
@@ -150,13 +152,12 @@ public class Bot extends  TelegramLongPollingBot
                         execute(message);
                    } catch (TelegramApiException e) {
                         e.printStackTrace();
-                     } 
-                  String code = update.getMessage().getText();
-                  message = new SendMessage();
-                  message.setChatId(update.getMessage().getchatId());
-                  boolean aux = true;
-                  while(aux)
-                  {
+                     }
+                     
+                      String code = update.getMessage().getText();
+                      message = new SendMessage();
+                      message.setChatId(update.getMessage().getchatId()); 
+                      boolean aux = true;
                       message.setText("digite um código para o seu bem");
                       try {
                             execute(message);
@@ -165,7 +166,91 @@ public class Bot extends  TelegramLongPollingBot
                          }
                       try
                       {
-                            Check.checkCodeP(estoque.
+                            check.checkCodeP(estoque.patri,code);
+                            aux = false;
+                       }
+                       catch(ExceptionHave k)
+                       {
+                            message.setText("esse codigo ja existe");
+                            try {
+                                execute(message);
+                            } catch (TelegramApiException b) {
+                                b.printStackTrace();
+                            }
+                            return;
+                       }
+                    
+                    aux = true;
+                    String descri = update.getMessage().getText();
+                    message = new SendMessage();
+                    message.setChatId(update.getMessage().getChatId());
+                    message.setText("digite uma descrição para o seu bem: ");
+                    try {
+                          execute(message);
+                     } catch (TelegramApiException b) {
+                                b.printStackTrace();
+                            }
+                    String locali = update.getMessage().getText();
+                    message = new SendMessage();
+                    message.setChatId(update.getMessage().getChatId());
+                    message.setText("digite o nome de um localização para o seu bem:");
+                    int indiceloca;
+                    for(int i = 0;i<locs.size();i++)
+                    {
+                        if(locs.get(i).getName().equals(locali))
+                        {
+                            aux = false;
+                            indiceloca = i;
+                        }
+                    }
+                    if(aux)
+                    {
+                        message.setText("essa localização não existe");
+                        try {
+                          execute(message);
+                        } catch (TelegramApiException b) {
+                                b.printStackTrace();
+                         }
+                         return;
+                     }
+                    aux = true;
+                    int indicecate;
+                    String catego  = update.getMessage().getText();
+                    message = new SendMessage();
+                    message.setChatId(update.getMessage().getChatId());
+                    message.setText("digite o nome de uma categoria para o seu bem:");
+                    for(int i = 0;i<cate.size();i++)
+                    {
+                        if(cate.get(i).getName().equals(catego))
+                        {
+                            aux = false;
+                            indicecate = i;
+                         }
+                     }
+                     if(aux)
+                     {
+                        message.setText("essa categoria não existe");
+                        try {
+                          execute(message);
+                        } catch (TelegramApiException b) {
+                                b.printStackTrace();
+                        return;
+                      }
+                      
+                      Patrimony p = new Patrimony(name,descri,locs.get(indiceloca),cate.get(indicecate));
+                      patri.add(p);
+                 }
+                     
+                            
+                     
+                        
+                         
+                       
+                        
+                        
+                                             
+                  
+                    
                       
                         
                   
