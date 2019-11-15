@@ -13,7 +13,7 @@ public class Bot extends  TelegramLongPollingBot {
         String command = update.getMessage().getText();
         SendMessage message = new SendMessage();
 
-        if (command.equals("/menu")) {
+        
             message.setText("OLÁ SEJA BEM VINDO AO MENU \n" +
                     "Digite /cadastrarLoc para cadastrar localização! \n" +
                     "\n"+
@@ -35,13 +35,21 @@ public class Bot extends  TelegramLongPollingBot {
                     "\n"+
                     "Digite /movimentarBemLoc para movimentar um bem entre as localizações! \n" +
                     "\n"+
-                    "Digite /gerarRelatorio para gerar um relatório geral! \n"
-            );
+                    "Digite /gerarRelatorio para gerar um relatório geral! \n");
+               try
+                {
+                    execute(message);
+                } catch(
+                    TelegramApiException e)
 
-        }
+                {
+                command = update.getMessage().getText();
+                message = new SendMessage();
+                message.setChatId(update.getMessage().getChatId());
+                   
 
-        if (command.equals("/cadastarLocalition")) {
-            String name = update.getMessage().getText();
+        if (command.equals("/cl")) {
+   
 
             boolean aux = true;
             while (aux) {
@@ -54,7 +62,9 @@ public class Bot extends  TelegramLongPollingBot {
                }
             }
 
-            String desc = update.getMessage().getText();
+              command = update.getMessage().getText();
+              message = new SendMessage();
+              message.setChatId(update.getMessage().getChatId());
 
             message.setText("Digite uma descrição para sua localização: ");
 
@@ -63,18 +73,10 @@ public class Bot extends  TelegramLongPollingBot {
 
         }
 
-        message.setChatId(update.getMessage().getChatId());
+       
 
-        try
-        {
-            execute(message);
-        } catch(
-                TelegramApiException e)
-
-        {
-            e.printStackTrace();
-        }
-    }
+     
+   
 
 
 
