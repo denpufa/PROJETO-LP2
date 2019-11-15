@@ -28,12 +28,12 @@ public class Check
         }
     }
      
-     public static void checkCodeP(ArrayList<Patrimony> a,String s) throws ExceptionHave
+     public static void checkCodeP(ArrayList<Patrimony> a,int s) throws ExceptionHave
      {
 
        for(int i = 0;i<a.size();i++)
        {
-            if(s.equals(a.get(i).getCode()))
+            if(s == a.get(i).getCode())
             {
                 throw new ExceptionHave();
                 //break;
