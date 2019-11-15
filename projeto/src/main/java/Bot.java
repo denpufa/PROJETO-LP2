@@ -142,7 +142,33 @@ public class Bot extends  TelegramLongPollingBot
                      Loocation l = new Location(name,desc);
                      estoque.locs.add(l);
                     
-            }
+            }else if(command.equals("2"))
+            {
+                   message.setText("digite um nome para o seu bem");
+                   try {
+                        execute(message);
+                   } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                     } 
+                  String code = update.getMessage().getText();
+                  message = new SendMessage();
+                  message.setChatId(update.getMessage().getchatId());
+                  boolean aux = true;
+                  while(aux)
+                  {
+                      message.setText("digite um código para o seu bem");
+                      try {
+                            execute(message);
+                       } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                         }
+                      
+                        
+                  
+                     
+                  
+                  
+                   
                     
 
 
