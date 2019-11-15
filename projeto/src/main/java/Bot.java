@@ -108,6 +108,7 @@ public class Bot extends  TelegramLongPollingBot
         String name = update.getMessage().getText();
         message = new SendMessage();
         message.setChatId(update.getMessage().getChatId());
+        
 
         if (command.equals("1")) {
 
@@ -162,6 +163,9 @@ public class Bot extends  TelegramLongPollingBot
                        } catch (TelegramApiException e) {
                             e.printStackTrace();
                          }
+                      try
+                      {
+                            Check.checkCodeP(estoque.
                       
                         
                   
