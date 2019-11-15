@@ -14,6 +14,7 @@ public class Bot extends  TelegramLongPollingBot
         SendMessage message = new SendMessage();
 
         if (command.equals("/myname"))
+        {
             message.setChatId(update.getMessage().getChatId());
         System.out.println(update.getMessage().getFrom().getFirstName());
 
@@ -42,6 +43,68 @@ public class Bot extends  TelegramLongPollingBot
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+        message.setText("4-Listar localizações");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("5-Listar Categorias");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("6-Listar bem por uma localização");
+         try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("7-Buscar Bem por código");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("8-Buscar bem por nome");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("9-Buscar bem por descrição");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("10-Movimentar bem entre localizações");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        message.setText("11-Gerar relatório");
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         String name = update.getMessage().getText();
         message = new SendMessage();
         message.setChatId(update.getMessage().getChatId());
@@ -49,8 +112,8 @@ public class Bot extends  TelegramLongPollingBot
         if (command.equals("1")) {
 
                 boolean aux = true;
-                Patrimony c = new Patrimony();
-                while(aux) {
+                while(aux) 
+                {
                     message.setText("digite um nome para a sua localização: ");
                     try {
                         execute(message);
@@ -61,14 +124,26 @@ public class Bot extends  TelegramLongPollingBot
                         Check.checkIfNameOnL(estoque.locs, name);
                         aux = false;
                     } catch (ExceptionHave exceptionHave) {
-                        message.setText("esse nome de localização ja existe");
+                            message.setText("esse nome de localização ja existe");
+                            try {
+                                execute(message);
+                                } catch (TelegramApiException e) {
+                                    e.printStackTrace();
+                                 }   
                     }
                 }
 
                     String desc = update.getMessage().getText();
                     message = new SendMessage();
                     message.setChatId(update.getMessage().getChatId());
-
+               
+                    message.setText("digite uma descrição para sua localização: ");
+                    
+                     Patrimony c = new Patrimony(name,desc);
+                     estoque.locs.add(c);
+                    
+            }
+                    
 
 
 
