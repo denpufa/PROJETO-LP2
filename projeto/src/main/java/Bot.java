@@ -237,7 +237,7 @@ public class Bot extends  TelegramLongPollingBot
                         return;
                       }
                       
-                      Patrimony p = new Patrimony(name,descri,locs.get(indiceloca),cate.get(indicecate));
+                      Patrimony p = new Patrimony(name,code,descri,locs.get(indiceloca),cate.get(indicecate));
                       patri.add(p);
                  }
                      
