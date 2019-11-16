@@ -9,9 +9,16 @@ import java.util.ArrayList;
 
 public class Bot extends  TelegramLongPollingBot {
 
+     ArrayList<Location> locs = new ArrayList<>();
+     Estoque estoque = new Estoque(locs);
 
-     String control = "1";
-    public void sendMsg(Message message, String text){
+    Location l = new Location();
+    int loc = 0;
+    int control = 0;
+
+
+
+    public void sendMsg(Message message, String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
@@ -24,58 +31,98 @@ public class Bot extends  TelegramLongPollingBot {
         }
 
     }
+
     public void onUpdateReceived(Update update) {
+        if (control == 0  ||    control % 2 == 0) {
+            Message message = update.getMessage();
+            if (message != null && message.hasText()) {
+                if (message.getText().equals("/commands")) {
+                    sendMsg(message, "/location - Cadastra localização! \n" +
+                            "\n" +
+                            "/patrimony - Cadastra um bem! \n" +
+                            "\n" +
+                            "/category - Cadastra categoria de bem! \n" +
+                            "\n" +
+                            "/listlocation - Lista as localizações! \n" +
+                            "\n" +
+                            "/listcategory - Lista as categorias! \n" +
+                            "\n" +
+                            "/listbylocation - Lista os bens por uma localização! \n" +
+                            "\n" +
+                            "/searchcode - Busca um bem pelo código! \n" +
+                            "\n" +
+                            "/searchname - Busca um bem pelo nome! \n" +
+                            "\n" +
+                            "/searchdesc - Busca um bem pela descrição! \n" +
+                            "\n" +
+                            "/movelocation - Movimenta um bem entre as localizações! \n" +
+                            "\n" +
+                            "/report - Gera um relatório geral! \n");
+                    opSystem();
+                }
 
-        Message message = update.getMessage();
 
-        if (message != null && message.hasText()){
-         switch(control){
-             case "1":      
-                    switch (message.getText()){
-                        case "/commands":
-                            sendMsg(message, "/location - Cadastra localização! \n" +
-                                    "\n"+
-                                    "/patrimony - Cadastra um bem! \n" +
-                                    "\n"+
-                                    "/category - Cadastra categoria de bem! \n" +
-                                    "\n"+
-                                    "/listlocation - Lista as localizações! \n" +
-                                    "\n"+
-                                    "/listcategory - Lista as categorias! \n" +
-                                    "\n"+
-                                    "/listbylocation - Lista os bens por uma localização! \n" +
-                                    "\n"+
-                                    "/searchcode - Busca um bem pelo código! \n" +
-                                    "\n"+
-                                    "/searchname - Busca um bem pelo nome! \n" +
-                                    "\n"+
-                                    "/searchdesc - Busca um bem pela descrição! \n" +
-                                    "\n"+
-                                    "/movelocation - Movimenta um bem entre as localizações! \n" +
-                                    "\n"+
-                                    "/report - Gera um relatório geral! \n");
-                            break;
-                        case "/cl":
-                            opSystem(update,message);
-                            break;
-
-                    }
-             case "2":
-                 opSystem(update,message);
-                 break;
             }
-         }   
+        }
+
+        if (control == 1 || control % 2 != 0) {
+            if (loc != 0) {
+                cadastrarLoc(update);
+            }
+            Message message = update.getMessage();
+            if (message != null && message.hasText()) {
+                switch (message.getText()) {
+                    case "/location":
+                        cadastrarLoc(update);
+
+                }
+
+            }
+        }
+
 
     }
 
-    private void opSystem(Update update, Message message) {
-        if(control.equals("1"))
-                control = "2";
-                return;
-        sendMsg(message,"Digite o nome da localização:");
-        message = update.getMessage();
-        String name = message.getText();
-        sendMsg(ok,name);
+    private void cadastrarLoc(Update update) {
+
+        Message m = update.getMessage();
+        if (m != null && m.hasText()) {
+            if(loc == 0) {
+                sendMsg(m, "digite um  nome para a localização: ");
+                String r = m.getText();
+                l.setName(r);
+                loc++;
+            }else if(loc == 1) {
+                sendMsg(m, "digite uma descrição para a sua localização: ");
+                String a = m.getText();
+                l.setDescription(a);
+                loc++;
+            }else if(loc == 2)
+            {
+                sendMsg(m, "adicionado localização com sucesso ,depois redigite o comando /comands");
+                opSystem();
+                loc = 0;
+                estoque.locs.add(l);
+
+
+
+            }
+
+        }
+
+    }
+
+
+
+
+
+    private void opSystem() {
+        control++;
+
+
+
+
+
 //        boolean aux = true;
 //        while (aux){
 //            boolean check = checkIfNameOnL(locs, name);
