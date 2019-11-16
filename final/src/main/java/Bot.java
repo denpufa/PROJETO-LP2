@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Bot extends  TelegramLongPollingBot {
 
 
-
+     String control = "1";
     public void sendMsg(Message message, String text){
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
@@ -29,43 +29,52 @@ public class Bot extends  TelegramLongPollingBot {
         Message message = update.getMessage();
 
         if (message != null && message.hasText()){
-            switch (message.getText()){
-                case "/commands":
-                    sendMsg(message, "/location - Cadastra localização! \n" +
-                            "\n"+
-                            "/patrimony - Cadastra um bem! \n" +
-                            "\n"+
-                            "/category - Cadastra categoria de bem! \n" +
-                            "\n"+
-                            "/listlocation - Lista as localizações! \n" +
-                            "\n"+
-                            "/listcategory - Lista as categorias! \n" +
-                            "\n"+
-                            "/listbylocation - Lista os bens por uma localização! \n" +
-                            "\n"+
-                            "/searchcode - Busca um bem pelo código! \n" +
-                            "\n"+
-                            "/searchname - Busca um bem pelo nome! \n" +
-                            "\n"+
-                            "/searchdesc - Busca um bem pela descrição! \n" +
-                            "\n"+
-                            "/movelocation - Movimenta um bem entre as localizações! \n" +
-                            "\n"+
-                            "/report - Gera um relatório geral! \n");
-                    break;
-                case "/cl":
-                    opSystem(update,message);
-                    break;
+         switch(control){
+             case "1":      
+                    switch (message.getText()){
+                        case "/commands":
+                            sendMsg(message, "/location - Cadastra localização! \n" +
+                                    "\n"+
+                                    "/patrimony - Cadastra um bem! \n" +
+                                    "\n"+
+                                    "/category - Cadastra categoria de bem! \n" +
+                                    "\n"+
+                                    "/listlocation - Lista as localizações! \n" +
+                                    "\n"+
+                                    "/listcategory - Lista as categorias! \n" +
+                                    "\n"+
+                                    "/listbylocation - Lista os bens por uma localização! \n" +
+                                    "\n"+
+                                    "/searchcode - Busca um bem pelo código! \n" +
+                                    "\n"+
+                                    "/searchname - Busca um bem pelo nome! \n" +
+                                    "\n"+
+                                    "/searchdesc - Busca um bem pela descrição! \n" +
+                                    "\n"+
+                                    "/movelocation - Movimenta um bem entre as localizações! \n" +
+                                    "\n"+
+                                    "/report - Gera um relatório geral! \n");
+                            break;
+                        case "/cl":
+                            opSystem(update,message);
+                            break;
 
+                    }
+             case "2":
+                 opSystem(update,message);
+                 break;
             }
-        }
+         }   
 
     }
 
     private void opSystem(Update update, Message message) {
+        if(control.equals("1"))
+                control = "2";
+                return;
         sendMsg(message,"Digite o nome da localização:");
-        Message ok = update.getMessage();
-        String name = ok.getText();
+        message = update.getMessage();
+        String name = message.getText();
         sendMsg(ok,name);
 //        boolean aux = true;
 //        while (aux){
