@@ -6,7 +6,7 @@ public class PatrimonyCategory extends Name {
     /**
      * @brief PatrimonyCategory class attributes.
      */
-    private int code;
+    private String code;
 
 //    public PatrimonyCategory(int code, String name, String description) {
 //        this.code = code;
@@ -17,7 +17,7 @@ public class PatrimonyCategory extends Name {
     /**
      * @brief Setters.
      */
-    public int getCode() {
+    public String  getCode() {
         return code;
     }
 
@@ -25,7 +25,7 @@ public class PatrimonyCategory extends Name {
      * @brief Setters.
      */
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 }

@@ -6,7 +6,7 @@ public class Patrimony extends Name{
     /**
      * @brief Patrimony class attributes.
      */
-    private int code;
+    private String code;
     private Location loc;
     private PatrimonyCategory ca;
 
@@ -26,7 +26,7 @@ public class Patrimony extends Name{
     /**
      * @brief Setters.
      */
-    public void setCode(int code){ this.code = code;}
+    public void setCode(String code){ this.code = code;}
 
     public void setLocation(Location loc){ this.loc = loc; }
 
@@ -35,7 +35,7 @@ public class Patrimony extends Name{
     /**
      * @brief Setters.
      */
-    public int getCode(){ return this.code; }
+    public String getCode(){ return this.code; }
 
     public Location getLocation(){ return this.loc; }
 
