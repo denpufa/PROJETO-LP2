@@ -15,18 +15,32 @@ public class Check
              }
          }
      }
+     public static void existeL(ArrayList<Location> l,String n) throws ExceptionHave
+     {
+         for(int i=0;i<l.size();i++)
+         {
+             if(n.equals(l.get(i).getName()))
+             {
+                 return;
+                 //break;
+             }
+         }
+         throw  new ExceptionHave();
 
-    public static void checkNameC(ArrayList<PatrimonyCategory> a,String s) throws ExceptionHave
-    {
-        for(int i=0;i<a.size();i++)
-        {
-            if(s.equals(a.get(i).getName()))
-            {
-                throw  new ExceptionHave();
-                //break;
-            }
-        }
-    }
+     }
+     public static void existeC(ArrayList<PatrimonyCategory> pc,String a) throws ExceptionHave{
+         for(int i = 0;i<pc.size();i++)
+         {
+             if(a.equals(pc.get(i).getName()))
+             {
+                 return;
+                 //break;
+             }
+         }
+         throw new ExceptionHave();
+     }
+
+
      
      public static void checkCodeP(ArrayList<Patrimony> a,String s) throws ExceptionHave
      {
@@ -55,44 +69,9 @@ public class Check
             }
         }
     }
-    public static void checkIfNameOnP(ArrayList<Patrimony> a, String s) throws ExceptionHave
-    {
-        for(int i = 0;i<a.size();i++)
-        {
-            if(s.equals(a.get(i).getName()))
-            {
-                //return a.get(i);
-            }
-            throw new ExceptionHave();
-            //break;
 
-        }
 
-    }
 
-    public static void checkIfNameOnPC(ArrayList<PatrimonyCategory> a,String s) throws ExceptionHave
-    {
-        for(int i = 0;i<a.size();i++)
-        {
-            if(s.equals(a.get(i).getName()))
-            {
-                //return a.get(i);
-            }
-            throw new ExceptionHave();
-            //break;
-        }
-    }
 
-    public static boolean checkIfNameOnL(ArrayList<Location> a, String s)
-    {
-        for(int i = 0; i< a.size();i++)
-        {
-            if(s.equals(a.get(i).getName()))
-            {
-                return true;
-            }
 
-        }
-        return false;
-    }
 }

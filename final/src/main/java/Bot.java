@@ -157,7 +157,7 @@ public class Bot extends  TelegramLongPollingBot {
 
     }
     private void arquivos(Update update){
-        
+
     }
     private void moverL(Update update){
         Message mes = update.getMessage();
@@ -381,15 +381,26 @@ public class Bot extends  TelegramLongPollingBot {
 
 
             } else if (intca == 2) {
-                sendMsg(m, "digte um código para o seu bem: ");
+                sendMsg(m, "digte um código para a sua categoria de  bem: ");
                 String r = m.getText();
                 intca++;
 
             } else if (intca == 3) {
                 sendMsg(m,"digite s");
                 String r = m.getText();
-                pc.setCode(r);
-                intca++;
+                try {
+                    Check.checkCodeC(estoque.patriC,r);
+                    pc.setCode(r);
+                    intca++;
+                } catch (ExceptionHave exceptionHave) {
+                    exceptionHave.printStackTrace();
+                    sendMsg(m,"esse código ja existe!");
+                    sendMsg(m,"agora redigite /commands para outra operação");
+                    opSystem();
+                    intca = 0;
+
+                }
+
             } else if (intca == 4) {
                 sendMsg(m, "agora digite uma descrição para sua categoria: ");
                 String r = m.getText();
@@ -450,12 +461,22 @@ public class Bot extends  TelegramLongPollingBot {
                 }else if(intpa == 5) {
                     sendMsg(m, "digite s");
                     String r = m.getText();
-                    for (int i = 0; i < estoque.locs.size(); i++) {
-                        if (estoque.locs.get(i).getName().equals(r)) {
-                            p.setLocation(estoque.locs.get(i));
+                    try{
+                        Check.existeL(estoque.locs,r);
+                        for (int i = 0; i < estoque.locs.size(); i++) {
+                            if (estoque.locs.get(i).getName().equals(r)) {
+                                p.setLocation(estoque.locs.get(i));
+                            }
                         }
+                        intpa++;
+                    } catch (ExceptionHave exceptionHave) {
+                        exceptionHave.printStackTrace();
+                        sendMsg(m,"essa localização não existe!");
+                        sendMsg(m,"digite /commands para outra operação");
+                        opSystem();
+                        intpa = 0;
                     }
-                    intpa++;
+
                 }else if(intpa == 6) {
                     sendMsg(m, "agora digite uma categoria para o  seu  bem: ");
                     String r = m.getText();
@@ -464,11 +485,21 @@ public class Bot extends  TelegramLongPollingBot {
                 else if(intpa == 7) {
                     sendMsg(m,"digite s");
                     String r = m.getText();
-                    for (int i = 0; i < estoque.patriC.size(); i++) {
-                        if (estoque.patriC.get(i).equals(r)) ;
-                        p.setCategory(estoque.patriC.get(i));
+                    try{
+                        Check.existeC(estoque.patriC,r);
+                        for (int i = 0; i < estoque.patriC.size(); i++) {
+                            if (estoque.patriC.get(i).equals(r)) ;
+                            p.setCategory(estoque.patriC.get(i));
+                        }
+                        intpa++;
+                    } catch (ExceptionHave exceptionHave) {
+                        exceptionHave.printStackTrace();
+                        sendMsg(m,"essa categoria não existe");
+                        sendMsg(m,"digite /commands para outra operação");
+                        opSystem();
+                        intpa = 0;
                     }
-                    intpa++;
+
                 }else if(intpa == 8) {
                     sendMsg(m, "digite um código para o seu bem: ");
                     String r = m.getText();
@@ -477,8 +508,18 @@ public class Bot extends  TelegramLongPollingBot {
                 }else if(intpa == 9) {
                     sendMsg(m, "digite s");
                     String r = m.getText();
-                    p.setCode(r);
-                    intpa++;
+                    try{
+                        Check.checkCodeP(estoque.patri,r);
+                        p.setCode(r);
+                        intpa++;
+                    } catch (ExceptionHave exceptionHave) {
+                        exceptionHave.printStackTrace();
+                        sendMsg(m,"esse código ja existe!");
+                        sendMsg(m,"digite /commands para outra operação");
+                        opSystem();
+                        intpa = 0;
+                    }
+
                 }else if(intpa == 10){
                     sendMsg(m,"agora digite /commands para outra operação");
                     opSystem();
@@ -502,8 +543,18 @@ public class Bot extends  TelegramLongPollingBot {
                 }else if(loc ==1){
                 sendMsg(m, "digite s");
                 String r = m.getText();
-                l.setName(r);
-                loc++;
+                try{
+                   Check.checkNameL(estoque.locs,r);
+                    l.setName(r);
+                    loc++;
+
+                } catch (ExceptionHave exceptionHave) {
+                    exceptionHave.printStackTrace();
+                    sendMsg(m,"essa localização ja existe!");
+                    sendMsg(m,"digite /commands para outra operação");
+                    opSystem();
+                    loc = 0;
+                }
             } else if (loc == 2) {
                 sendMsg(m, "digite uma descrição para  o sua localização:  ");
                 String a = m.getText();
