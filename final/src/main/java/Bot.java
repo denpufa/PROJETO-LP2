@@ -25,9 +25,18 @@ public class Bot extends  TelegramLongPollingBot {
     int intpro = 0;
     int intpron = 0;
     int intprod = 0;
+    int intm= 0;
     boolean  aux = true;
     boolean auxtwo = true;
     boolean auxthree = true;
+
+    //variaves auxilar na movimentacao de localização
+    String help;
+    Location lo;
+    boolean ent = true;
+
+
+
 
 
 
@@ -81,6 +90,9 @@ public class Bot extends  TelegramLongPollingBot {
         }
         //seguda opção de controle caso uma operação seja inicida ela entrada direto para continua-la ,caso não espera um comando no switch!!
         if (control == 2 || control % 2 == 0) {
+            if(intm != 0){
+                moverL(update);
+            }
             if(intprod != 0){
                 procurabyD(update);
             }
@@ -131,12 +143,76 @@ public class Bot extends  TelegramLongPollingBot {
                         case "/searchdesc":
                             procurabyD(update);
                             break;
-
+                        case "/movelocation":
+                            moverL(update);
+                            break;
+                        case "/report":
+                             arquivos(update);
                     }
                 }
 
             }
         }
+
+
+    }
+    private void arquivos(Update update){
+        
+    }
+    private void moverL(Update update){
+        Message mes = update.getMessage();
+        if(mes != null &&  mes.hasText()){
+            if(intm == 0){
+                sendMsg(mes,"digte o código do bem: ");
+                String r = mes.getText();
+                intm++;
+            }else if(intm == 1){
+                sendMsg(mes,"digite s");
+                String r = mes.getText();
+                intm++;
+                help = r;
+            }else if(intm == 2){
+                sendMsg(mes,"digite o nome da nova localização: ");
+                String r = mes.getText();
+                intm++;
+
+            }else if(intm == 3){
+                String r = mes.getText();
+                for(Location y:estoque.locs){
+                    if(y.getName().equals(help)){
+                        lo = y;
+                    }
+                }
+                if(lo!=null){
+                    for(Patrimony p: estoque.patri){
+                        if(p.getCode().equals(r)){
+                            p.setLocation(lo);
+                            ent = false;
+                        }
+                    }
+                    intm++;
+                    if(ent){
+                        sendMsg(mes,"Bem não encontrado!");
+
+                    }
+                }else{
+                    sendMsg(mes,"localização não encontrada!");
+                    intm++;
+
+                }
+                sendMsg(mes,"digite /commmands para outra operação");
+                opSystem();
+                intm = 0;
+
+            }else {
+                sendMsg(mes,"digite /commmands para outra operação");
+                opSystem();
+                intm = 0;
+
+            }
+        }
+
+
 
 
     }
