@@ -7,7 +7,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import java.util.ArrayList;
 
 
-public class Bot extends  TelegramLongPollingBot {
+public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
 
     //inicializando objetos a serem utilizados pelo estoque e pelo  o sistema em geral.
 
@@ -159,7 +159,7 @@ public class Bot extends  TelegramLongPollingBot {
     private void arquivos(Update update){
 
     }
-    private void moverL(Update update){
+    public void moverL(Update update){
         Message mes = update.getMessage();
         if(mes != null &&  mes.hasText()){
             if(intm == 0){
@@ -216,7 +216,7 @@ public class Bot extends  TelegramLongPollingBot {
 
 
     }
-    private void procurabyD(Update update){
+    public void procurabyD(Update update){
         Message mes = update.getMessage();
         if(mes != null &&  mes.hasText()){
             if(intprod == 0){
@@ -246,7 +246,7 @@ public class Bot extends  TelegramLongPollingBot {
 
         }
     }
-    private void procuraByN(Update update){
+    public void procuraByN(Update update){
         Message mes = update.getMessage();
         if(mes != null && mes.hasText()){
             if(intpron == 0){
@@ -279,7 +279,7 @@ public class Bot extends  TelegramLongPollingBot {
             }
         }
     }
-    private void procuraByC(Update update) {
+    public void procuraByC(Update update) {
         Message mes = update.getMessage();
         if (mes != null && mes.hasText()) {
             if (intpro == 0) {
@@ -314,7 +314,7 @@ public class Bot extends  TelegramLongPollingBot {
         }
     }
 
-    private void listarLocbyP(Update update) {
+    public void listarLocbyP(Update update) {
         Message mes = update.getMessage();
         if (mes != null && mes.hasText()) {
             if (intlocb == 0) {
@@ -341,7 +341,7 @@ public class Bot extends  TelegramLongPollingBot {
 
 
 
-    private void listarCat(Update update){
+    public void listarCat(Update update){
         Message mes = update.getMessage();
         for(PatrimonyCategory pa: estoque.patriC){
             sendMsg(mes,"nome: " + pa.getName() + " código: " + pa.getCode() +" descrição: " + pa.getDescription());
@@ -349,7 +349,7 @@ public class Bot extends  TelegramLongPollingBot {
         sendMsg(mes,"Agora digite /commands para nova operação");
         opSystem();
     }
-    private void listarLoc(Update update){
+    public void listarLoc(Update update){
         Message mes = update.getMessage();
         for (Location  l: estoque.locs) {
 
@@ -362,7 +362,7 @@ public class Bot extends  TelegramLongPollingBot {
 
 
 
-    private void cadastrarCate(Update update) {
+    public void cadastrarCate(Update update) {
         Message m = update.getMessage();
         if (m != null && m.hasText()) {
             if(intca == 0){
@@ -425,7 +425,7 @@ public class Bot extends  TelegramLongPollingBot {
     }
 
 
-    private void cadastrarPatri(Update update ){
+    public void cadastrarPatri(Update update ){
         Message m = update.getMessage();
         if (m != null && m.hasText()) {
                 if(intpa == 0){
@@ -530,7 +530,7 @@ public class Bot extends  TelegramLongPollingBot {
         }
     }
 
-    private void cadastrarLoc(Update update) {
+     public void cadastrarLoc(Update update) {
 
 
         Message m = update.getMessage();
