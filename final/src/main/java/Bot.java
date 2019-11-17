@@ -20,6 +20,8 @@ public class Bot extends  TelegramLongPollingBot {
     int control = 1;
     int intpa = 0;
     int intca = 0;
+    int intlocb = 0;
+
 
 
     public void sendMsg(Message message, String text) {
@@ -72,29 +74,37 @@ public class Bot extends  TelegramLongPollingBot {
         if (control == 2 || control % 2 == 0) {
             if (intca != 0) {
                 cadastrarCate(update);
-            }
-            if (loc != 0) {
+            }else if (loc != 0) {
                 cadastrarLoc(update);
-            }
-            if (intpa != 0) {
+            }else if (intpa != 0) {
                 cadastrarPatri(update);
-            }
-            Message message = update.getMessage();
-            if (message != null && message.hasText()) {
-                switch (message.getText()) {
-                    case "/location":
-                        cadastrarLoc(update);
-                        break;
-                    case "/patrimony":
-                        cadastrarPatri(update);
-                        break;
-                    case "/category":
-                        cadastrarCate(update);
-                        break;
-                    case "/listlocation":
-                        listarLoc(update);
-                        break;
+            }else
+            {
+                Message message = update.getMessage();
+                if (message != null && message.hasText()) {
+                    switch (message.getText()) {
+                        case "/location":
+                            cadastrarLoc(update);
+                            break;
+                        case "/patrimony":
+                            cadastrarPatri(update);
+                            break;
+                        case "/category":
+                            cadastrarCate(update);
+                            break;
+                        case "/listlocation":
+                            listarLoc(update);
+                            break;
+                        case "/listcategory":
+                            listarCat(update);
+                            break;
+                        case "/listbylocation":
+                            listarLocbyP(update);
+                            break;
 
+
+
+                    }
                 }
 
             }
@@ -102,47 +112,100 @@ public class Bot extends  TelegramLongPollingBot {
 
 
     }
-    private void listarLoc(Update update){
-        Message m = new Message();
-        
-        for(int i = 1;i<estoque.locs.size();i++) {
-            String s = estoque.locs.get(i).getName();
-            String d = estoque.locs.get(i).getDescription();
-            sendMsg(m, s + "  \n"
-                    + d
-            );
-            sendMsg(m,"Agora digite /commadans para nva operação");
+    private void listarLocbyP(Update update) {
+        Message mes = update.getMessage();
+        if (mes != null && mes.hasText()) {
+            if (intlocb == 0) {
+                sendMsg(mes, "digite o nome de uma localização: ");
+                String r = mes.getText();
+                intlocb++;
+            } else if (intlocb == 1) {
 
-            opSystem();
+                sendMsg(mes, "digite s");
+                String r = mes.getText();
+                for (Patrimony p : estoque.patri) {
+                    if (p.getLocation().getName().equals(r))
+                        sendMsg(mes, " nome : " + p.getName() + " código: " + p.getCode());
+                }
+                sendMsg(mes, "Agora digite /commands para nova operação");
+                opSystem();
+            }
         }
+        }
+
+
+
+
+
+
+
+
+    private void listarCat(Update update){
+        Message mes = update.getMessage();
+        for(PatrimonyCategory pa: estoque.patriC){
+            sendMsg(mes,"nome: " + pa.getName() + " código: " + pa.getCode() +" descrição: " + pa.getDescription());
+        }
+        sendMsg(mes,"Agora digite /commands para nova operação");
+        opSystem();
     }
+    private void listarLoc(Update update){
+        Message mes = update.getMessage();
+        for (Location  l: estoque.locs) {
+
+            sendMsg(mes,"nome: " + l.getName() + " descrição: "  + l.getDescription());
+        }
+        sendMsg(mes, "Agora digite /commands para nova operação");
+
+        opSystem();
+            }
+
+
 
     private void cadastrarCate(Update update) {
         Message m = update.getMessage();
         if (m != null && m.hasText()) {
-            if (intca == 0) {
+            if(intca == 0){
                 sendMsg(m, "digite um nome para sua categoria de bem: ");
                 String r = m.getText();
                 pc.setName(r);
                 intca++;
 
-            } else if (intca == 1) {
-                sendMsg(m, "digite uma descrição para sua categoria de bem: ");
+
+
+            }else if (intca == 1) {
+                sendMsg(m, "digite s ");
                 String r = m.getText();
-                pc.setDescription(r);
+                pc.setName(r);
                 intca++;
+
+
             } else if (intca == 2) {
                 sendMsg(m, "digte um código para o seu bem: ");
                 String r = m.getText();
+                intca++;
+
+            } else if (intca == 3) {
+                sendMsg(m,"digite s");
+                String r = m.getText();
                 pc.setCode(r);
                 intca++;
-            } else if (intca == 3) {
-                sendMsg(m, "categoria de bem cadastrada com sucesso,digite,para outra operação digite /command");
-                opSystem();
+            } else if (intca == 4) {
+                sendMsg(m, "agora digite uma descrição para sua categoria: ");
+                String r = m.getText();
+                intca++;
+            }else if(intca == 5){
+                sendMsg(m,"digite s");
+                String r = m.getText();
+                pc.setDescription(r);
+                intca++;
+            }else if(intca == 6){
+                sendMsg(m,"agora redigite /commands para outra operação");
                 estoque.patriC.add(pc);
                 intca = 0;
                 pc = new PatrimonyCategory();
+                opSystem();
             }
+
 
 
         }
@@ -156,15 +219,16 @@ public class Bot extends  TelegramLongPollingBot {
                 if(intpa == 0){
                     sendMsg(m,"digite um nome para o seu bem: ");
                     String r = m.getText();
+                    intpa++;
+
+                }else if(intpa == 1){
+                    sendMsg(m,"digite s ");
+                    String r = m.getText();
                     p.setName(r);
                     intpa++;
-                }else if(intpa == 1){
-                    sendMsg(m,"digite uma descrição para o seu bem: ");
-                    String r = m.getText();
-                    p.setDescription(r);
-                    intpa++;
+
                 }else if(intpa == 2){
-                    sendMsg(m,"Digite uma localizão para o seu bem: ");
+                    sendMsg(m,"Digite uma descrição para o seu bem: ");
                     String r = m.getText();
                     for(int i = 0;i<estoque.locs.size();i++){
                         if(estoque.locs.get(i).getName().equals(r)){
@@ -172,59 +236,91 @@ public class Bot extends  TelegramLongPollingBot {
                         }
                     }
                     intpa++;
-                }else if(intpa == 3){
-                    sendMsg(m,"digite uma categoria para o seu bem: ");
+
+                }else if(intpa == 3) {
+                    sendMsg(m, "digite s");
                     String r = m.getText();
-                    for(int i = 0;i<estoque.patriC.size();i++){
-                        if(estoque.patriC.get(i).equals(r));
-                            p.setCategory(estoque.patriC.get(i));
+                    p.setDescription(r);
+                    intpa++;
+                }else if(intpa == 4) {
+                    sendMsg(m, "agora digite uma localização para o seu bem: ");
+                    String r = m.getText();
+                    intpa++;
+                }else if(intpa == 5) {
+                    sendMsg(m, "digite s");
+                    String r = m.getText();
+                    for (int i = 0; i < estoque.locs.size(); i++) {
+                        if (estoque.locs.get(i).getName().equals(r)) {
+                            p.setLocation(estoque.locs.get(i));
+                        }
                     }
                     intpa++;
-
-                }else if(intpa == 4){
-                    sendMsg(m,"digite um código para o seu bem: ");
+                }else if(intpa == 6) {
+                    sendMsg(m, "agora digite uma categoria para o  seu  bem: ");
+                    String r = m.getText();
+                    intpa++;
+                }
+                else if(intpa == 7) {
+                    sendMsg(m,"digite s");
+                    String r = m.getText();
+                    for (int i = 0; i < estoque.patriC.size(); i++) {
+                        if (estoque.patriC.get(i).equals(r)) ;
+                        p.setCategory(estoque.patriC.get(i));
+                    }
+                    intpa++;
+                }else if(intpa == 8) {
+                    sendMsg(m, "digite um código para o seu bem: ");
+                    String r = m.getText();
+                    intpa++;
+                }else if(intpa == 9) {
+                    sendMsg(m, "digite s");
                     String r = m.getText();
                     p.setCode(r);
                     intpa++;
-                }else if(intpa == 5){
-                    sendMsg(m,"cadastrado bem com sucesso,digite /commands para outra operação");
+                }else if(intpa == 10){
+                    sendMsg(m,"agora digite /commands para outra operação");
                     opSystem();
                     intpa = 0;
                     estoque.patri.add(p);
                     p = new Patrimony();
                 }
-
         }
     }
 
     private void cadastrarLoc(Update update) {
 
+
         Message m = update.getMessage();
         if (m != null && m.hasText()) {
-            if(loc == 0) {
-                sendMsg(m, "digite um  nome para a localização: ");
+            if (loc == 0) {
+                sendMsg(m,"digite  o nome para sua localização:");
+                String opa = m.getText();
+
+                loc++;
+                }else if(loc ==1){
+                sendMsg(m, "digite s");
                 String r = m.getText();
                 l.setName(r);
                 loc++;
-            }else if(loc == 1) {
-                sendMsg(m, "digite uma descrição para a sua localização: ");
+            } else if (loc == 2) {
+                sendMsg(m, "digite uma descrição para  o sua localização:  ");
                 String a = m.getText();
-                l.setDescription(a);
+
                 loc++;
-            }else if(loc == 2)
-            {
-                sendMsg(m, "adicionado localização com sucesso ,depois redigite o comando /comands");
+            } else if (loc == 3) {
+                sendMsg(m, "digite s");
+                String r = m.getText();
+                l.setDescription(r);
+                loc++;
+            }else if(loc == 4){
+
+                sendMsg(m, "agora redigite o comando /commands para outra operação");
                 opSystem();
                 loc = 0;
                 estoque.locs.add(l);
                 l = new Location();
-
-
-
             }
-
         }
-
     }
 
 
