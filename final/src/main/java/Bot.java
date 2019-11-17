@@ -394,7 +394,7 @@ public class Bot extends  TelegramLongPollingBot {
                     intca++;
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
-                    sendMsg(m,"esse código ja existe!");
+                    sendMsg(m,"esse código ja existe,não digite s!");
                     sendMsg(m,"agora redigite /commands para outra operação");
                     opSystem();
                     intca = 0;
@@ -471,7 +471,7 @@ public class Bot extends  TelegramLongPollingBot {
                         intpa++;
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
-                        sendMsg(m,"essa localização não existe!");
+                        sendMsg(m,"essa localização não existe,não digite s!");
                         sendMsg(m,"digite /commands para outra operação");
                         opSystem();
                         intpa = 0;
@@ -494,7 +494,7 @@ public class Bot extends  TelegramLongPollingBot {
                         intpa++;
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
-                        sendMsg(m,"essa categoria não existe");
+                        sendMsg(m,"essa categoria não existe,não digite s!");
                         sendMsg(m,"digite /commands para outra operação");
                         opSystem();
                         intpa = 0;
@@ -514,7 +514,7 @@ public class Bot extends  TelegramLongPollingBot {
                         intpa++;
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
-                        sendMsg(m,"esse código ja existe!");
+                        sendMsg(m,"esse código ja existe,não digite s!");
                         sendMsg(m,"digite /commands para outra operação");
                         opSystem();
                         intpa = 0;
@@ -550,7 +550,7 @@ public class Bot extends  TelegramLongPollingBot {
 
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
-                    sendMsg(m,"essa localização ja existe!");
+                    sendMsg(m,"essa localização ja existe,não digite s!");
                     sendMsg(m,"digite /commands para outra operação");
                     opSystem();
                     loc = 0;
