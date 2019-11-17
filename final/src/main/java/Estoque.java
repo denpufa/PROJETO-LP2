@@ -5,13 +5,20 @@ public class Estoque
  public ArrayList<Location> locs;
  public ArrayList<PatrimonyCategory> patriC;
  public ArrayList<Patrimony> patri;
+ private static Estoque e;
 
 
- public Estoque(ArrayList<Location> l,ArrayList<PatrimonyCategory> p,ArrayList<Patrimony> a){
-     locs = l;
-     patriC = p;
-     patri = a;
+ private Estoque(){
+     locs = new ArrayList<>();
+     patriC = new ArrayList<>();
+     patri = new ArrayList<>();
 
+ }
+ public static Estoque getInstance(){
+     if(e == null){
+         e = new Estoque();
+     }
+     return e;
  }
 
 

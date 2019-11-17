@@ -9,21 +9,29 @@ import java.util.ArrayList;
 
 public class Bot extends  TelegramLongPollingBot {
 
-    ArrayList<Patrimony> patri = new ArrayList<>();
-    ArrayList<PatrimonyCategory> patriC = new ArrayList<>();
-    ArrayList<Location> locs = new ArrayList<>();
-    Estoque estoque = new Estoque(locs, patriC, patri);
+    //inicializando objetos a serem utilizados pelo estoque e pelo  o sistema em geral.
+
+    Estoque estoque = Estoque.getInstance();
     PatrimonyCategory pc = new PatrimonyCategory();
     Location l = new Location();
     Patrimony p = new Patrimony();
+
+    //variaveis para controlar a máquina de estado!!
     int loc = 0;
     int control = 1;
     int intpa = 0;
     int intca = 0;
     int intlocb = 0;
+    int intpro = 0;
+    int intpron = 0;
+    int intprod = 0;
+    boolean  aux = true;
+    boolean auxtwo = true;
+    boolean auxthree = true;
 
 
 
+    //método que envia mesangens ao usuario!!
     public void sendMsg(Message message, String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
@@ -37,8 +45,9 @@ public class Bot extends  TelegramLongPollingBot {
         }
 
     }
-
+    //funcao que recebe dados do telegram a cada momento!!
     public void onUpdateReceived(Update update) {
+        //primeira opção de controle ela é mostra o menu para o usuario e espera um comando!!
         if (control == 1 || control % 2 != 0 ) {
             Message message = update.getMessage();
             if (message != null && message.hasText()) {
@@ -70,8 +79,20 @@ public class Bot extends  TelegramLongPollingBot {
 
             }
         }
-
+        //seguda opção de controle caso uma operação seja inicida ela entrada direto para continua-la ,caso não espera um comando no switch!!
         if (control == 2 || control % 2 == 0) {
+            if(intprod != 0){
+                procurabyD(update);
+            }
+            if(intpron != 0){
+                procuraByN(update);
+            }
+            if(intpro != 0 ){
+                procuraByC(update);
+            }
+            if(intlocb != 0){
+                listarLocbyP(update);
+            }
             if (intca != 0) {
                 cadastrarCate(update);
             }else if (loc != 0) {
@@ -101,8 +122,15 @@ public class Bot extends  TelegramLongPollingBot {
                         case "/listbylocation":
                             listarLocbyP(update);
                             break;
-
-
+                        case "/searchcode":
+                            procuraByC(update);
+                            break;
+                        case "/searchname":
+                            procuraByN(update);
+                            break;
+                        case "/searchdesc":
+                            procurabyD(update);
+                            break;
 
                     }
                 }
@@ -112,6 +140,104 @@ public class Bot extends  TelegramLongPollingBot {
 
 
     }
+    private void procurabyD(Update update){
+        Message mes = update.getMessage();
+        if(mes != null &&  mes.hasText()){
+            if(intprod == 0){
+                sendMsg(mes,"digite a descrição do bem: ");
+                String r = mes.getText();
+                intprod++;
+            }else if(intprod == 1){
+                sendMsg(mes,"digite s");
+                String r = mes.getText();
+                for(Patrimony p: estoque.patri){
+                    if(p.getDescription().equals(r)){
+                        sendMsg(mes,"bem encotrado " + " Localização: " + p.getLocation().getName());
+                        auxthree  = false;
+                        opSystem();
+                        intprod = 0;
+
+                    }
+                }
+                intprod++;
+            }else if(auxthree){
+                sendMsg(mes,"bem não encontrado!");
+                sendMsg(mes,"digite /commands para outra operação");
+                opSystem();
+                intprod = 0;
+
+            }
+
+        }
+    }
+    private void procuraByN(Update update){
+        Message mes = update.getMessage();
+        if(mes != null && mes.hasText()){
+            if(intpron == 0){
+                sendMsg(mes,"digite nome do bem: ");
+                String r = mes.getText();
+                intpron++;
+            }else if(intpron == 1){
+                sendMsg(mes,"digite s");
+                String r = mes.getText();
+                for(Patrimony p: estoque.patri){
+                    if(p.getName().equals(r)){
+                        sendMsg(mes, "Bem encontrado sua localização : " + p.getLocation().getName());
+                        sendMsg(mes, "digite /commands para outra operação");
+                        opSystem();
+                        intpro = 0;
+                        auxtwo = false;
+                    }
+
+                }
+                intpron++;
+
+
+
+            }else if(auxtwo){
+                sendMsg(mes,"bem não encontrado !");
+                sendMsg(mes,"digite /commands para outra operação");
+                opSystem();
+                intpron = 0;
+
+            }
+        }
+    }
+    private void procuraByC(Update update) {
+        Message mes = update.getMessage();
+        if (mes != null && mes.hasText()) {
+            if (intpro == 0) {
+                sendMsg(mes, "digite o código do bem: ");
+                String r = mes.getText();
+                intpro++;
+
+            } else if (intpro == 1) {
+                sendMsg(mes,"digite s");
+                String r = mes.getText();
+                for (Patrimony p : estoque.patri) {
+                    if (p.getCode().equals(r)) {
+                        sendMsg(mes, "Bem encontrado sua localização : " + p.getLocation().getName());
+                        sendMsg(mes, "digite /commands para outra operação");
+                        opSystem();
+                        intpro= 0;
+                        aux = false;
+
+
+                    }
+                }
+                intpro++;
+
+            } else if (aux) {
+
+                sendMsg(mes, "Bem não encontrado !");
+                sendMsg(mes, "digite /commands para outra operação");
+                opSystem();
+                intpro = 0;
+
+            }
+        }
+    }
+
     private void listarLocbyP(Update update) {
         Message mes = update.getMessage();
         if (mes != null && mes.hasText()) {
@@ -120,8 +246,6 @@ public class Bot extends  TelegramLongPollingBot {
                 String r = mes.getText();
                 intlocb++;
             } else if (intlocb == 1) {
-
-                sendMsg(mes, "digite s");
                 String r = mes.getText();
                 for (Patrimony p : estoque.patri) {
                     if (p.getLocation().getName().equals(r))
@@ -129,6 +253,7 @@ public class Bot extends  TelegramLongPollingBot {
                 }
                 sendMsg(mes, "Agora digite /commands para nova operação");
                 opSystem();
+                intlocb = 0;
             }
         }
         }
@@ -271,6 +396,7 @@ public class Bot extends  TelegramLongPollingBot {
                 }else if(intpa == 8) {
                     sendMsg(m, "digite um código para o seu bem: ");
                     String r = m.getText();
+                    p.setCode(r);
                     intpa++;
                 }else if(intpa == 9) {
                     sendMsg(m, "digite s");
