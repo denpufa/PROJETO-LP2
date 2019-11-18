@@ -29,7 +29,7 @@ OK-Listar bem por localização.
 
 OK-Listar bem por categoria.
 
-OK-buscar bem por código.(So falta colocar a opção para ver todas os campos do bem).
+OK-buscar bem por código.
 
 OK-buscar bem por nome.
 
