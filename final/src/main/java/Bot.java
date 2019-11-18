@@ -5,6 +5,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
@@ -172,6 +173,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                 }
             }
         }
+
         for(Patrimony p: estoque.patri) {
             sendMsg(mes, p.getName());
         }
@@ -345,12 +347,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                 String r = mes.getText();
                 try{
                     Check.existeL(estoque.locs,r);
-                    for (Patrimony p : estoque.patri) {
-                        if (p.getLocation().getName().equals(r))
-                            sendMsg(mes, " nome : " + p.getName() + " código: " + p.getCode());
-                    }
-                    sendMsg(mes, "Agora digite /commands para nova operação");
-                    opSystem();
+
                     intlocb = 0;
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
@@ -359,6 +356,14 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                     opSystem();
                     intlocb = 0;
                 }
+                for (Patrimony p : estoque.patri) {
+                    if (p.getLocation().getName().equals(r))
+                        sendMsg(mes, " nome : " + p.getName() + " código: " + p.getCode());
+                }
+                sendMsg(mes, "Agora digite /commands para nova operação");
+                opSystem();
+                intlocb = 0;
+
 
             }
         }
@@ -421,7 +426,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                 try {
                     Check.checkCodeC(estoque.patriC,r);
                     pc.setCode(r);
-                    intca++;
+
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
                     sendMsg(m,"esse código ja existe,não digite qualquer tecla!");
@@ -430,6 +435,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                     intca = 0;
 
                 }
+                intca++;
 
             } else if (intca == 4) {
                 sendMsg(m, "agora digite uma descrição para sua categoria: ");
@@ -498,7 +504,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                                 p.setLocation(estoque.locs.get(i));
                             }
                         }
-                        intpa++;
+
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
                         sendMsg(m,"essa localização não existe,não digite qualquer tecla!");
@@ -506,6 +512,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                         opSystem();
                         intpa = 0;
                     }
+                    intpa++;
 
                 }else if(intpa == 6) {
                     sendMsg(m, "agora digite uma categoria para o  seu  bem: ");
@@ -521,7 +528,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                             if (estoque.patriC.get(i).equals(r)) ;
                             p.setCategory(estoque.patriC.get(i));
                         }
-                        intpa++;
+
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
                         sendMsg(m,"essa categoria não existe,não digite s!");
@@ -529,6 +536,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                         opSystem();
                         intpa = 0;
                     }
+                    intpa++;
 
                 }else if(intpa == 8) {
                     sendMsg(m, "digite um código para o seu bem: ");
@@ -541,7 +549,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                     try{
                         Check.checkCodeP(estoque.patri,r);
                         p.setCode(r);
-                        intpa++;
+
                     } catch (ExceptionHave exceptionHave) {
                         exceptionHave.printStackTrace();
                         sendMsg(m,"esse código ja existe,não digite s!");
@@ -549,6 +557,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                         opSystem();
                         intpa = 0;
                     }
+                    intpa++;
 
                 }else if(intpa == 10){
                     sendMsg(m,"agora digite /commands para outra operação");
@@ -576,7 +585,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                 try{
                    Check.checkNameL(estoque.locs,r);
                     l.setName(r);
-                    loc++;
+
 
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
@@ -585,6 +594,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                     opSystem();
                     loc = 0;
                 }
+                loc++;
             } else if (loc == 2) {
                 sendMsg(m, "digite uma descrição para  o sua localização:  ");
                 String a = m.getText();
