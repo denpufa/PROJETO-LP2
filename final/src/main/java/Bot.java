@@ -27,7 +27,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
     int intpron = 0;
     int intprod = 0;
     int intm= 0;
-    int a = 0;
+
     boolean  aux = true;
     boolean auxtwo = true;
     boolean auxthree = true;
@@ -58,11 +58,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
     }
     //funcao que recebe dados do telegram a cada momento!!
     public void onUpdateReceived(Update update) {
-        if(a == 0){
-            Message alok = update.getMessage();
-            sendMsg(alok,"digite /commands");
-            a++;
-        }
+
         //primeira opção de controle ela é mostra o menu para o usuario e espera um comando!!
         if (control == 1 || control % 2 != 0 ) {
             Message message = update.getMessage();
