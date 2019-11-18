@@ -15,7 +15,7 @@ public class Patrimony extends Name{
      * @param  //String, String.
      */
 
-//    Patrimony(int code,  String name, String description, Location loc, PatrimonyCategory ca){
+//    Patrimony(String code,  String name, String description, Location loc, PatrimonyCategory ca){
 //        this.code = code;
 //        this.name = name;
 //        this.description = description;

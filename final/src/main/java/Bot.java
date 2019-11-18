@@ -581,23 +581,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
 
 
     private void opSystem() {
-        control++;
-
-
-
-
-
-//        boolean aux = true;
-//        while (aux){
-//            boolean check = checkIfNameOnL(locs, name);
-//            if (check == false){
-//                aux = false;
-//                sendMsg(message,name);
-//            }
-//            else{
-//                sendMsg(message,"Esse nome de localização ja existe");
-//            }
-//        }
+       control++;
 
     }
 
