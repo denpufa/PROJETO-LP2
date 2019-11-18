@@ -27,6 +27,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
     int intpron = 0;
     int intprod = 0;
     int intm= 0;
+    int a = 0;
     boolean  aux = true;
     boolean auxtwo = true;
     boolean auxthree = true;
@@ -57,6 +58,11 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
     }
     //funcao que recebe dados do telegram a cada momento!!
     public void onUpdateReceived(Update update) {
+        if(a == 0){
+            Message alok = update.getMessage();
+            sendMsg(alok,"digite /commands");
+            a++;
+        }
         //primeira opção de controle ela é mostra o menu para o usuario e espera um comando!!
         if (control == 1 || control % 2 != 0 ) {
             Message message = update.getMessage();
@@ -188,7 +194,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                 String r = mes.getText();
                 intm++;
             }else if(intm == 1){
-                sendMsg(mes,"digite s");
+                sendMsg(mes,"digite qualquer tecla");
                 String r = mes.getText();
                 intm++;
                 help = r;
@@ -589,7 +595,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
 
                 } catch (ExceptionHave exceptionHave) {
                     exceptionHave.printStackTrace();
-                    sendMsg(m,"essa localização ja existe,não digite s!");
+                    sendMsg(m,"essa localização ja existe,não digite qualquer tecla!");
                     sendMsg(m,"digite /commands para outra operação");
                     opSystem();
                     loc = 0;
