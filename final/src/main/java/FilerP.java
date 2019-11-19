@@ -63,7 +63,7 @@ public class FilerP implements Files{
         System.out.println(list.toJSONString());
 
         try{
-            writeFile = new FileWriter("bdPatrimony.json");
+            writeFile = new FileWriter("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdPatrimony.json");
             writeFile.write(list.toJSONString());
             writeFile.close();
         }
@@ -80,7 +80,7 @@ public class FilerP implements Files{
 
         JSONParser parserP = new JSONParser();
 
-        try(FileReader reader =  new FileReader("bdPatrimony.json")){
+        try(FileReader reader =  new FileReader("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdPatrimony.json")){
             Object obj = parserP.parse(reader);
             JSONArray list2 = (JSONArray) obj;
             list2.forEach(jsons -> initialCharge((JSONObject) jsons));

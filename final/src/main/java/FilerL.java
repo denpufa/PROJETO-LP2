@@ -5,10 +5,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +17,7 @@ public class FilerL implements Files{
     /**
      * @brief FilerL class attributes.
      */
-    public Estoque estoque = Estoque.getInstance();
+    Estoque estoque = Estoque.getInstance();
     public JSONArray listL = new JSONArray();
 
     /**
@@ -42,8 +40,8 @@ public class FilerL implements Files{
         objectJsonL.put("LocationName",location.getName());
         objectJsonL.put("LocationDescription",location.getDescription());
 
-
         listL.add(objectJsonL);
+
 
         write();
     }
@@ -52,12 +50,13 @@ public class FilerL implements Files{
      * @brief  Method write is responsible for write the JSONArray listL in file bdLocation.json.
      */
     public  void write(){
+
         FileWriter writeFileL = null;
 
         System.out.println(listL.toJSONString());
 
         try{
-            writeFileL = new FileWriter("bdLocation.json");
+            writeFileL = new FileWriter("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdLocation.json");
             writeFileL.write(listL.toJSONString());
             writeFileL.close();
         }
@@ -73,7 +72,7 @@ public class FilerL implements Files{
     public void charge(){
         JSONParser parserL = new JSONParser();
 
-        try(FileReader reader =  new FileReader("bdLocation.json")){
+        try(FileReader reader =  new FileReader("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdLocation.json")){
             Object obj = parserL.parse(reader);
             JSONArray list2 = (JSONArray) obj;
             list2.forEach(jsons -> initialCharge((JSONObject) jsons));

@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
  */
 public interface Files {
     default void add() {}
-    void write();
+    //void write();
     void charge();
     void initialCharge(JSONObject json);
 

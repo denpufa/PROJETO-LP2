@@ -60,7 +60,7 @@ public class FilerC implements Files{
         System.out.println(listC.toJSONString());
 
         try{
-            writeFileC = new FileWriter("bdCategory.json");
+            writeFileC = new FileWriter("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdCategory.json");
             writeFileC.write(listC.toJSONString());
             writeFileC.close();
         }
@@ -76,7 +76,7 @@ public class FilerC implements Files{
     public void charge(){
         JSONParser parserP = new JSONParser();
 
-        try(FileReader reader =  new FileReader("bdCategory.json")){
+        try(FileReader reader =  new FileReader("C:\\Users\\andre\\Music\\PROJETO-LP2\\final\\src\\main\\bdCategory.json")){
             Object obj = parserP.parse(reader);
             JSONArray list2 = (JSONArray) obj;
             list2.forEach(jsons -> initialCharge((JSONObject) jsons));
@@ -102,6 +102,7 @@ public class FilerC implements Files{
         patrimonyCategory.setDescription((String) json.get("CategoryDescription"));
 
         estoque.patriC.add(patrimonyCategory);
+
 
     }
 }
