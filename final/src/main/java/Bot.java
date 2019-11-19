@@ -37,6 +37,7 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
     int intpron = 0;
     int intprod = 0;
     int intm= 0;
+    int carre = 0;
 
     boolean  aux = true;
     boolean auxtwo = true;
@@ -112,6 +113,9 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
          * @brief Second control option if an operation is started it direct input to continue it if it does not expect a command on the switch.
          **/
         if (control == 2 || control % 2 == 0) {
+            if(carre != 0){
+                carregar(update);
+            }
             if(intm != 0){
                 moverL(update);
             }
@@ -170,11 +174,42 @@ public class Bot extends  TelegramLongPollingBot implements SystemNeeds {
                             break;
                         case "/report":
                              imprimir(update);
+                             break;
+                        case "/chargepatrimonies":
+                            carregar(update);
+                            break;
                     }
                 }
 
             }
         }
+    }
+
+
+    public void carregar(Update update){
+        Message mes = update.getMessage();
+        if(mes != null &&  mes.hasText()) {
+
+            if (carre == 0) {
+                sendMsg(mes, "digite l para carregar localizações,digite c para categorias, p para bems");
+                String r = mes.getText();
+                carre++;
+            } else if (carre == 1) {
+                sendMsg(mes,"digite qualquer tecla");
+                String r = mes.getText();
+                if (r.equals("l")) {
+                    FilerL l = new FilerL();
+                    l.charge();
+                } else if (r.equals("c")) {
+                    FilerC fc = new FilerC();
+                    fc.charge();
+                } else if (r.equals("p")) {
+                    FilerP fp = new FilerP();
+                    fp.charge();
+                }
+            }
+        }
+
     }
 
     /**
