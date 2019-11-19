@@ -1,9 +1,8 @@
 /**
- * @brief  Locations class is responsible for ...
+ * @brief  Locations class is responsible for structure the Locations.
  */
 public class Location extends Name
 {
-
     /**
      * @brief  Standardized Constructor.
      * @param  //String, String.

@@ -9,7 +9,7 @@
         <module name="projetinho_bot" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="projetinho_bot" target="8" />
     </bytecodeTargetLevel>
   </component>

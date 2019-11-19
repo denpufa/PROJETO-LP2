@@ -1,5 +1,5 @@
 /**
- * @brief  PatrimonyCategory class is responsible for ...
+ * @brief  PatrimonyCategory class is responsible for structure the categories.
  */
 public class PatrimonyCategory extends Name {
 

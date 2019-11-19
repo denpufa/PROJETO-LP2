@@ -10,10 +10,6 @@ public class Patrimony extends Name{
     private Location loc;
     private PatrimonyCategory ca;
 
-    /**
-     * @brief  Standardized Constructor.
-     * @param  //String, String.
-     */
 
 //    Patrimony(String code,  String name, String description, Location loc, PatrimonyCategory ca){
 //        this.code = code;

@@ -1,5 +1,5 @@
 /**
- * @brief  Locations class is responsible for ...
+ * @brief  Locations class is responsible for create scope for other classes.
  */
 public abstract class Name {
 

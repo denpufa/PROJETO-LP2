@@ -1,9 +1,16 @@
+/**
+ * @brief  Imported libraries.
+ * */
 import java.util.ArrayList;
 
-import static java.lang.Integer.parseInt;
-
+/**
+ * @brief  Check class is responsible for check certain conditions.
+ */
 public class Check
 {
+    /**
+     * @brief  Method checkNameL is responsible for check if location name exists.
+     * */
     public static void checkNameL(ArrayList<Location> a,String s) throws ExceptionHave
     {
         for(int i=0;i<a.size();i++)
@@ -15,6 +22,10 @@ public class Check
              }
          }
      }
+
+    /**
+     * @brief  Method existeL is responsible for check if this location name already exists.
+     * */
      public static void existeL(ArrayList<Location> l,String n) throws ExceptionHave
      {
          for(int i=0;i<l.size();i++)
@@ -28,6 +39,10 @@ public class Check
          throw  new ExceptionHave();
 
      }
+
+    /**
+     * @brief  Method existeL is responsible for check if this Category name already exists.
+     * */
      public static void existeC(ArrayList<PatrimonyCategory> pc,String a) throws ExceptionHave{
          for(int i = 0;i<pc.size();i++)
          {
@@ -41,7 +56,9 @@ public class Check
      }
 
 
-     
+    /**
+     * @brief  Method existeL is responsible for check if this patrimony code already exists.
+     * */
      public static void checkCodeP(ArrayList<Patrimony> a,String s) throws ExceptionHave
      {
 
@@ -55,7 +72,9 @@ public class Check
         }
      }
 
-
+    /**
+     * @brief  Method existeL is responsible for check if this category code already exists.
+     * */
     public static void checkCodeC(ArrayList<PatrimonyCategory> a,String s) throws ExceptionHave
     {
 
